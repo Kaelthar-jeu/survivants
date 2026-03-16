@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Survivants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0a0d08;--bg2:#111408;--bg3:#181c10;--bg4:#202618;
+  --border:#2a3020;--border2:#3a4228;
+  --texte:#c8caa0;--texte-dim:#686850;--texte-clair:#e8eac8;
+  --vert:#3a6a18;--vert-vif:#4a8a20;--vert-dim:#1a3a08;
+  --terre:#7a4a18;--terre-vif:#9a6020;--terre-dim:#4a2808;
+  --rouge:#7a1a1a;--or:#8a7020;--ciel:#2a4a6a;
+  --mono:'Share Tech Mono',monospace;
+  --titre:'Roboto Condensed',sans-serif;
+  --corps:'Libre Baskerville',Georgia,serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--texte);font-family:var(--corps);font-size:16px;line-height:1.7;overflow-x:hidden;}
+
+body::before{content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;}
+
+.studio-bar{position:relative;z-index:10;background:#060806;border-bottom:2px solid var(--vert-dim);padding:6px 16px;text-align:center;}
+.studio-bar a{color:var(--texte-dim);font-size:11px;text-decoration:none;letter-spacing:3px;font-family:var(--mono);transition:color 0.2s;}
+.studio-bar a:hover{color:var(--vert-vif);}
+
+/* ── INTRO ── */
+#ecran-intro{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;}
+
+.intro-inner{max-width:560px;width:100%;text-align:left;position:relative;z-index:1;}
+.intro-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:24px;animation:app 0.7s ease 0.1s both;}
+.intro-titre{font-family:var(--titre);font-size:clamp(64px,16vw,120px);font-weight:700;color:var(--texte-clair);line-height:0.9;letter-spacing:-1px;text-transform:uppercase;animation:app 0.7s ease 0.2s both;}
+.intro-titre span{display:block;color:var(--vert-vif);-webkit-text-stroke:1px var(--vert-dim);}
+.intro-sep{width:80px;height:3px;background:linear-gradient(90deg,var(--vert-vif),transparent);margin:20px 0;animation:app 0.7s ease 0.35s both;}
+.intro-accroche{font-family:var(--corps);font-size:14px;font-style:italic;color:var(--texte-dim);line-height:1.9;margin-bottom:44px;animation:app 0.7s ease 0.45s both;max-width:420px;}
+.intro-btns{display:flex;gap:12px;flex-wrap:wrap;animation:app 0.7s ease 0.6s both;}
+.btn-intro-p{background:var(--vert);border:none;color:#fff;font-family:var(--titre);font-size:15px;font-weight:700;letter-spacing:3px;padding:14px 36px;cursor:pointer;transition:background 0.2s;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.btn-intro-p:hover{background:var(--vert-vif);}
+.btn-intro-s{display:none;background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:11px;letter-spacing:3px;padding:14px 24px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.btn-intro-s:hover{border-color:var(--vert-dim);color:var(--texte);}
+@keyframes app{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:translateX(0);}}
+
+/* ── SETUP ── */
+#ecran-setup{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;}
+.setup-wrap{max-width:620px;margin:auto;padding:40px 0;}
+.setup-entete{margin-bottom:36px;padding-bottom:16px;border-bottom:2px solid var(--vert-dim);}
+.setup-ref{font-family:var(--mono);font-size:9px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:6px;}
+.setup-titre{font-family:var(--titre);font-size:32px;font-weight:700;color:var(--texte-clair);letter-spacing:1px;text-transform:uppercase;}
+.setup-bloc{margin-bottom:28px;}
+.setup-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);display:block;margin-bottom:8px;}
+.setup-input{width:100%;background:var(--bg3);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--mono);font-size:14px;padding:10px 0;outline:none;transition:border-color 0.2s;border-radius:0;}
+.setup-input:focus{border-bottom-color:var(--vert-vif);}
+.setup-input::placeholder{color:var(--texte-dim);}
+
+.biome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.biome-carte{background:var(--bg3);border:2px solid var(--border);padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.biome-carte:hover{border-color:var(--border2);}
+.biome-carte.sel{border-color:var(--vert-vif);background:rgba(58,106,24,0.1);}
+.biome-icon{font-size:20px;margin-bottom:4px;}
+.biome-nom{font-family:var(--titre);font-size:13px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
+
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mode-carte{background:var(--bg3);border:2px solid var(--border);padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.mode-carte:hover{border-color:var(--border2);}
+.mode-carte.sel{border-color:var(--vert-vif);background:rgba(58,106,24,0.08);}
+.mode-nom{font-family:var(--titre);font-size:13px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
+.mode-desc{font-family:var(--mono);font-size:9px;color:var(--texte-dim);margin-top:3px;}
+
+.checkbox-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;margin-top:8px;}
+.checkbox-wrap input{accent-color:var(--vert-vif);cursor:pointer;}
+.checkbox-label{font-family:var(--mono);font-size:10px;color:var(--texte-dim);letter-spacing:1px;}
+
+.btn-setup{width:100%;background:var(--vert);border:none;color:#fff;font-family:var(--titre);font-size:15px;font-weight:700;letter-spacing:4px;padding:16px;cursor:pointer;transition:background 0.2s;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));margin-top:8px;}
+.btn-setup:hover{background:var(--vert-vif);}
+.btn-setup:disabled{background:var(--border2);cursor:not-allowed;clip-path:none;}
+
+/* ── REPRISE ── */
+#ecran-reprise{display:none;position:fixed;inset:0;z-index:250;background:rgba(10,13,8,0.97);align-items:center;justify-content:center;padding:20px;}
+.reprise-box{background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--vert-vif);max-width:440px;width:100%;padding:36px;}
+.reprise-ref{font-family:var(--mono);font-size:9px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:6px;}
+.reprise-titre{font-family:var(--titre);font-size:24px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;margin-bottom:24px;}
+.reprise-info{margin-bottom:24px;border-left:2px solid var(--vert-dim);padding-left:14px;}
+.reprise-ligne{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;font-family:var(--mono);}
+.reprise-cle{color:var(--texte-dim);}
+.reprise-val{color:var(--vert-vif);font-weight:500;}
+.reprise-btns{display:flex;gap:10px;}
+.reprise-btn{flex:1;padding:12px;border:none;font-family:var(--mono);font-size:10px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.rbp{background:var(--vert);color:#fff;}
+.rbp:hover{background:var(--vert-vif);}
+.rbn{background:var(--bg3);color:var(--texte-dim);border:1px solid var(--border2);}
+.rbn:hover{border-color:var(--vert-dim);color:var(--texte);}
+
+/* ── APP ── */
+#app{display:flex;flex-direction:column;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 16px;position:relative;z-index:1;}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 12px;border-bottom:2px solid var(--vert-dim);flex-shrink:0;}
+.logo{font-family:var(--titre);font-size:20px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
+.logo span{color:var(--vert-vif);}
+.header-droite{display:flex;align-items:center;gap:12px;}
+.jour-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--texte-clair);background:var(--vert-dim);padding:3px 10px;}
+.saison-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--or);border:1px solid var(--or);padding:3px 8px;}
+.btn-mode-hdr{background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:9px;letter-spacing:2px;padding:4px 10px;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
+.btn-mode-hdr:hover{border-color:var(--vert-dim);color:var(--texte);}
+.sauv{font-family:var(--mono);font-size:10px;color:var(--texte-dim);}
+.sauv.ok{color:var(--vert-vif);}
+.sauv.cours{color:var(--or);}
+
+.main{display:flex;flex:1;gap:14px;padding:14px 0;min-height:0;}
+
+/* ── PANNEAU SURVIE ── */
+.survie-panel{width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:calc(100vh - 80px);position:sticky;top:0;}
+.sv-bloc{background:var(--bg2);border:1px solid var(--border);position:relative;z-index:5;}
+.sv-titre{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);background:var(--bg3);padding:5px 12px;border-bottom:1px solid var(--border);}
+.sv-inner{padding:12px 14px;}
+.sv-ligne{display:flex;justify-content:space-between;align-items:center;padding:3px 0;}
+.sv-nom{font-family:var(--mono);font-size:10px;color:var(--texte-dim);}
+.sv-val{font-family:var(--mono);font-size:11px;color:var(--vert-vif);font-weight:500;}
+.sv-barre-wrap{background:var(--bg4);height:3px;margin-top:2px;margin-bottom:5px;border-radius:1px;overflow:hidden;}
+.sv-barre{height:100%;background:var(--vert-vif);transition:width 0.4s ease;border-radius:1px;}
+.sv-barre.terre{background:var(--terre-vif);}
+.sv-barre.rouge{background:var(--rouge);}
+.sv-barre.or{background:var(--or);}
+.sv-barre.ciel{background:var(--ciel);}
+
+.comm-bloc{padding:14px;text-align:center;}
+.comm-pop{font-family:var(--titre);font-size:36px;font-weight:700;color:var(--texte-clair);line-height:1;}
+.comm-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-top:2px;}
+.comm-biome{font-family:var(--mono);font-size:9px;color:var(--vert-vif);margin-top:6px;letter-spacing:1px;}
+
+.res-item{font-family:var(--mono);font-size:10px;color:var(--texte-dim);padding:3px 0;border-bottom:1px solid var(--border);}
+.res-item:last-child{border-bottom:none;}
+.res-item span{color:var(--terre-vif);float:right;}
+
+.faction-item{font-family:var(--mono);font-size:10px;padding:4px 0;border-bottom:1px solid var(--border);line-height:1.4;}
+.faction-item:last-child{border-bottom:none;}
+.faction-vide{font-family:var(--mono);font-size:10px;color:var(--border2);font-style:italic;}
+
+.btn-prem{width:100%;padding:11px;background:linear-gradient(135deg,var(--vert-dim),var(--terre-dim));color:#fff;border:none;font-family:var(--mono);font-size:9px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:opacity 0.2s;}
+.btn-prem:hover{opacity:0.85;}
+
+/* ── JEU ── */
+.jeu-panel{flex:1;display:flex;flex-direction:column;min-width:0;gap:10px;position:relative;z-index:5;}
+#recit{flex:1;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--vert-dim);padding:22px;overflow-y:auto;min-height:0;position:relative;z-index:5;}
+.entree{margin-bottom:22px;animation:fadeIn 0.35s ease;position:relative;z-index:5;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.entree p{font-family:var(--corps);font-size:16px;line-height:1.9;color:var(--texte-clair);margin-bottom:10px;}
+.action-joueur{font-family:var(--mono);font-size:11px;color:var(--texte-dim);padding:7px 12px;border-left:3px solid var(--vert-dim);margin-bottom:12px;background:rgba(58,106,24,0.05);}
+
+.evenement-bloc{background:var(--bg3);border:1px solid var(--border2);border-left:4px solid var(--terre-vif);padding:14px 16px;margin:10px 0;}
+.evenement-header{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--terre-vif);text-transform:uppercase;margin-bottom:6px;}
+.evenement-texte{font-family:var(--corps);font-size:13px;color:var(--texte);line-height:1.7;}
+
+.saison-bloc{background:rgba(138,112,32,0.08);border:1px solid var(--or);padding:12px 16px;margin:10px 0;text-align:center;}
+.saison-header{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--or);text-transform:uppercase;margin-bottom:4px;}
+.saison-texte{font-family:var(--corps);font-size:13px;font-style:italic;color:var(--texte-clair);}
+
+.maj-stats{font-family:var(--mono);font-size:11px;color:var(--vert-vif);padding:6px 10px;background:rgba(58,106,24,0.08);border-left:2px solid var(--vert-dim);margin-top:8px;letter-spacing:1px;}
+.sep{border:none;border-top:1px solid var(--border);margin:14px 0;}
+.curseur{display:inline-block;width:2px;height:14px;background:var(--vert-vif);animation:clign 0.7s infinite;vertical-align:text-bottom;margin-left:2px;}
+@keyframes clign{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+
+.choix-bloc{background:var(--bg3);border:1px solid var(--border2);border-top:3px solid var(--vert-vif);padding:14px 16px;margin-top:12px;position:relative;z-index:10;}
+.choix-titre{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);margin-bottom:10px;}
+.choix-btn{display:block;width:100%;text-align:left;background:var(--bg2);border:1px solid var(--border);border-left:3px solid transparent;color:var(--texte-clair);font-family:var(--corps);font-size:14px;padding:12px 14px;margin-bottom:7px;cursor:pointer;transition:all 0.2s;line-height:1.5;position:relative;z-index:10;pointer-events:auto;}
+.choix-btn:hover{background:rgba(58,106,24,0.12);border-left-color:var(--vert-vif);border-color:var(--vert-dim);}
+.choix-btn:last-child{margin-bottom:0;}
+
+.input-zone{display:flex;gap:8px;flex-shrink:0;position:relative;z-index:5;}
+#input-joueur{flex:1;background:var(--bg2);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--corps);font-size:14px;padding:12px 14px;resize:none;height:52px;outline:none;transition:border-color 0.2s;}
+#input-joueur:focus{border-bottom-color:var(--vert-vif);}
+#input-joueur::placeholder{color:var(--texte-dim);font-style:italic;}
+#input-joueur:disabled{opacity:0.4;}
+#btn-envoyer{background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:0 18px;cursor:pointer;transition:background 0.2s;flex-shrink:0;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);}
+#btn-envoyer:hover{background:var(--vert-vif);}
+#btn-envoyer:disabled{background:var(--bg4);cursor:not-allowed;clip-path:none;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--vert-dim);border-radius:2px;}
+::-webkit-scrollbar-thumb:hover{background:var(--vert-vif);}
+
+@media(max-width:700px){
+  #app{padding:0 8px;}
+  .main{flex-direction:column;gap:8px;padding:8px 0;}
+  .survie-panel{width:100%;max-height:none;position:static;flex-direction:row;flex-wrap:wrap;gap:8px;overflow:visible;}
+  .survie-panel > div{min-width:140px;flex:1;}
+  #recit{min-height:260px;max-height:48vh;padding:14px;}
+  .entree p{font-size:15px;}
+  .biome-grid{grid-template-columns:1fr 1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-bar">
+  <a href="https://recitgames.vercel.app">&#9664; RÉCIT GAMES</a>
+</div>
+
+<!-- INTRO -->
+<div id="ecran-intro">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ciel-s" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#080c06"/>
+        <stop offset="40%" stop-color="#0d1208"/>
+        <stop offset="100%" stop-color="#060804"/>
+      </linearGradient>
+      <radialGradient id="lune-s" cx="75%" cy="12%" r="10%">
+        <stop offset="0%" stop-color="rgba(200,210,160,0.15)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+      <radialGradient id="feu-s" cx="50%" cy="75%" r="20%">
+        <stop offset="0%" stop-color="rgba(180,80,20,0.3)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+    </defs>
+    <rect width="800" height="600" fill="url(#ciel-s)"/>
+    <rect width="800" height="600" fill="url(#lune-s)"/>
+    <!-- Étoiles -->
+    <circle cx="100" cy="40" r="1" fill="rgba(255,255,220,0.5)"/>
+    <circle cx="200" cy="20" r="0.8" fill="rgba(255,255,220,0.4)"/>
+    <circle cx="350" cy="35" r="1" fill="rgba(255,255,220,0.5)"/>
+    <circle cx="500" cy="15" r="0.8" fill="rgba(255,255,220,0.3)"/>
+    <circle cx="650" cy="45" r="1" fill="rgba(255,255,220,0.4)"/>
+    <circle cx="750" cy="25" r="0.8" fill="rgba(255,255,220,0.35)"/>
+    <!-- Lune -->
+    <circle cx="600" cy="65" r="22" fill="rgba(200,210,160,0.12)"/>
+    <circle cx="600" cy="65" r="14" fill="rgba(200,210,160,0.08)"/>
+    <!-- Silhouette forêt fond -->
+    <path d="M0,300 Q20,260 40,280 Q60,220 80,250 Q100,200 120,230 Q140,190 160,220 Q180,180 200,210 Q220,170 240,200 Q260,185 280,210 Q300,175 320,205 Q340,180 360,200 Q380,170 400,195 Q420,175 440,200 Q460,185 480,205 Q500,175 520,198 Q540,180 560,200 Q580,170 600,195 Q620,180 640,205 Q660,190 680,210 Q700,195 720,215 Q740,200 760,218 Q780,205 800,220 L800,600 L0,600 Z" fill="#0a0e06"/>
+    <!-- Forêt milieu -->
+    <path d="M0,370 Q30,330 60,350 Q90,310 120,335 Q150,295 180,320 Q210,290 240,315 Q270,300 300,320 Q330,295 360,318 Q390,300 420,322 Q450,305 480,325 Q510,305 540,328 Q570,308 600,330 Q630,312 660,335 Q690,318 720,340 Q750,325 780,345 L800,600 L0,600 Z" fill="#0c1208"/>
+    <!-- Arbres proches détaillés -->
+    <!-- Arbre 1 -->
+    <rect x="118" y="300" width="12" height="200" fill="#0a0d06"/>
+    <path d="M90,300 L124,200 L158,300 Z" fill="#0e1508"/>
+    <path d="M96,260 L124,170 L152,260 Z" fill="#101808"/>
+    <path d="M102,225 L124,145 L146,225 Z" fill="#122008"/>
+    <!-- Arbre 2 -->
+    <rect x="268" y="320" width="10" height="180" fill="#080c05"/>
+    <path d="M244,320 L273,230 L302,320 Z" fill="#0c1406"/>
+    <path d="M249,282 L273,200 L297,282 Z" fill="#0e1808"/>
+    <path d="M254,248 L273,175 L292,248 Z" fill="#101a08"/>
+    <!-- Arbre 3 -->
+    <rect x="488" y="310" width="14" height="190" fill="#0a0d06"/>
+    <path d="M460,310 L495,210 L530,310 Z" fill="#0e1508"/>
+    <path d="M466,270 L495,178 L524,270 Z" fill="#101808"/>
+    <path d="M472,235 L495,152 L518,235 Z" fill="#122008"/>
+    <!-- Arbre 4 -->
+    <rect x="658" y="305" width="11" height="195" fill="#080c05"/>
+    <path d="M634,305 L663,208 L692,305 Z" fill="#0c1406"/>
+    <path d="M640,268 L663,178 L686,268 Z" fill="#0e1808"/>
+    <!-- Sol / herbe -->
+    <rect x="0" y="480" width="800" height="120" fill="#080c05"/>
+    <rect x="0" y="476" width="800" height="6" fill="#0e1408"/>
+    <!-- Feu de camp -->
+    <rect x="376" y="490" width="48" height="6" fill="#1a1408" rx="2"/>
+    <rect x="382" y="470" width="6" height="28" fill="#1a1408" rx="1" transform="rotate(-15,385,470)"/>
+    <rect x="410" y="470" width="6" height="28" fill="#1a1408" rx="1" transform="rotate(15,413,470)"/>
+    <rect x="396" y="460" width="6" height="30" fill="#1a1408" rx="1"/>
+    <!-- Flammes -->
+    <ellipse cx="400" cy="460" rx="12" ry="18" fill="rgba(180,80,20,0.6)"/>
+    <ellipse cx="400" cy="455" rx="8" ry="14" fill="rgba(220,120,20,0.5)"/>
+    <ellipse cx="400" cy="450" rx="5" ry="10" fill="rgba(240,180,40,0.4)"/>
+    <rect width="800" height="600" fill="url(#feu-s)"/>
+    <!-- Silhouettes survivants autour du feu -->
+    <ellipse cx="360" cy="498" rx="10" ry="14" fill="#060806"/>
+    <circle cx="360" cy="484" r="7" fill="#060806"/>
+    <ellipse cx="440" cy="498" rx="10" ry="14" fill="#060806"/>
+    <circle cx="440" cy="484" r="7" fill="#060806"/>
+    <ellipse cx="380" cy="503" rx="9" ry="12" fill="#060806"/>
+    <circle cx="380" cy="491" r="6" fill="#060806"/>
+    <ellipse cx="420" cy="503" rx="9" ry="12" fill="#060806"/>
+    <circle cx="420" cy="491" r="6" fill="#060806"/>
+    <!-- Épave avion à droite -->
+    <path d="M580,440 L720,420 L730,435 L590,460 Z" fill="rgba(30,35,25,0.8)"/>
+    <path d="M640,425 L700,415 L705,430 L645,440 Z" fill="rgba(25,30,20,0.9)"/>
+    <!-- Vignette -->
+    <radialGradient id="vig-s" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="rgba(8,10,6,0.7)"/>
+    </radialGradient>
+    <rect width="800" height="600" fill="url(#vig-s)"/>
+  </svg>
+
+  <div class="intro-inner">
+    <div class="intro-tag">Roman interactif de survie · Récit Games</div>
+    <div class="intro-titre">Sur<span>vivants</span></div>
+    <div class="intro-sep"></div>
+    <div class="intro-accroche">
+      L'avion s'est écrasé.<br>
+      Il y a des survivants.<br>
+      Ce qui arrive ensuite dépend de vous.
+    </div>
+    <div class="intro-btns">
+      <button class="btn-intro-p" onclick="afficherSetup()">Commencer à survivre</button>
+      <button class="btn-intro-s" id="btn-reprendre-intro" onclick="clicReprendre()">Reprendre</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP -->
+<div id="ecran-setup">
+  <div class="setup-wrap">
+    <div class="setup-entete">
+      <div class="setup-ref">Configuration de la partie</div>
+      <div class="setup-titre">Survivants</div>
+    </div>
+
+    <div class="setup-bloc">
+      <label class="setup-label">Clé API Anthropic</label>
+      <input class="setup-input" type="password" id="api-key" placeholder="sk-ant-api03-..." autocomplete="off"/>
+      <label class="checkbox-wrap">
+        <input type="checkbox" id="se-souvenir"/>
+        <span class="checkbox-label">Se souvenir sur cet appareil</span>
+      </label>
+    </div>
+
+    <div class="setup-bloc">
+      <label class="setup-label">Biome préféré — ou laisser l'IA choisir</label>
+      <div class="biome-grid">
+        <div class="biome-carte sel" id="biome-aleatoire" onclick="choisirBiome('aleatoire')">
+          <div class="biome-icon">🎲</div>
+          <div class="biome-nom">Aléatoire</div>
+        </div>
+        <div class="biome-carte" id="biome-jungle" onclick="choisirBiome('jungle')">
+          <div class="biome-icon">🌿</div>
+          <div class="biome-nom">Jungle</div>
+        </div>
+        <div class="biome-carte" id="biome-foret" onclick="choisirBiome('foret')">
+          <div class="biome-icon">🌲</div>
+          <div class="biome-nom">Forêt</div>
+        </div>
+        <div class="biome-carte" id="biome-montagne" onclick="choisirBiome('montagne')">
+          <div class="biome-icon">⛰️</div>
+          <div class="biome-nom">Montagne</div>
+        </div>
+        <div class="biome-carte" id="biome-ile" onclick="choisirBiome('ile')">
+          <div class="biome-icon">🏝️</div>
+          <div class="biome-nom">Île</div>
+        </div>
+        <div class="biome-carte" id="biome-desert" onclick="choisirBiome('desert')">
+          <div class="biome-icon">🏜️</div>
+          <div class="biome-nom">Désert</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-bloc">
+      <label class="setup-label">Mode d'interaction</label>
+      <div class="mode-grid">
+        <div class="mode-carte sel" id="mode-boutons" onclick="choisirMode('boutons')">
+          <div class="mode-nom">Boutons</div>
+          <div class="mode-desc">4 choix proposés</div>
+        </div>
+        <div class="mode-carte" id="mode-libre" onclick="choisirMode('libre')">
+          <div class="mode-nom">Texte libre</div>
+          <div class="mode-desc">Tu décides</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-setup" id="btn-lancer" onclick="lancerJeu()">S'écraser</button>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--texte-dim);text-align:center;margin-top:12px;letter-spacing:1px;">Chaque partie est générée aléatoirement · Progression sauvegardée</p>
+  </div>
+</div>
+
+<!-- REPRISE -->
+<div id="ecran-reprise">
+  <div class="reprise-box">
+    <div class="reprise-ref">Survie en cours</div>
+    <div class="reprise-titre">Survivants</div>
+    <div class="reprise-info" id="reprise-info"></div>
+    <div class="reprise-btns">
+      <button class="reprise-btn rbp" id="btn-continuer">Reprendre</button>
+      <button class="reprise-btn rbn" id="btn-nouvelle">Nouvelle partie</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div class="logo">Sur<span>vivants</span></div>
+    <div class="header-droite">
+      <div class="jour-tag" id="jour-tag">Jour 1</div>
+      <div class="saison-tag" id="saison-tag">Été</div>
+      <button class="btn-mode-hdr" id="btn-mode-switch" onclick="basculerMode()">Boutons</button>
+      <div class="sauv" id="sauv-ind">● prêt</div>
+    </div>
+  </header>
+  <div class="main">
+    <div class="survie-panel">
+
+      <div class="sv-bloc comm-bloc">
+        <div class="comm-pop" id="c-pop">—</div>
+        <div class="comm-label">Survivants</div>
+        <div class="comm-biome" id="c-biome">Lieu inconnu</div>
+      </div>
+
+      <div class="sv-bloc">
+        <div class="sv-titre">Communauté</div>
+        <div class="sv-inner">
+          <div class="sv-ligne"><span class="sv-nom">Moral</span><span class="sv-val" id="s-moral">80</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre" id="b-moral" style="width:80%"></div></div>
+          <div class="sv-ligne"><span class="sv-nom">Cohésion</span><span class="sv-val" id="s-cohesion">80</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre" id="b-cohesion" style="width:80%"></div></div>
+          <div class="sv-ligne"><span class="sv-nom">Influence joueur</span><span class="sv-val" id="s-influence">20</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre or" id="b-influence" style="width:20%"></div></div>
+        </div>
+      </div>
+
+      <div class="sv-bloc">
+        <div class="sv-titre">Réserves</div>
+        <div class="sv-inner">
+          <div class="sv-ligne"><span class="sv-nom">Eau (jours)</span><span class="sv-val" id="s-eau">0</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre ciel" id="b-eau" style="width:0%"></div></div>
+          <div class="sv-ligne"><span class="sv-nom">Nourriture (jours)</span><span class="sv-val" id="s-nourriture">0</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre terre" id="b-nourriture" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <div class="sv-bloc">
+        <div class="sv-titre">Joueur</div>
+        <div class="sv-inner">
+          <div class="sv-ligne"><span class="sv-nom">Santé</span><span class="sv-val" id="s-sante">100</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre" id="b-sante" style="width:100%"></div></div>
+          <div class="sv-ligne"><span class="sv-nom">Énergie</span><span class="sv-val" id="s-energie">100</span></div>
+          <div class="sv-barre-wrap"><div class="sv-barre" id="b-energie" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="sv-bloc">
+        <div class="sv-titre">Ressources</div>
+        <div class="sv-inner" id="ressources-liste">
+          <div class="res-item">Bois <span id="r-bois">0</span></div>
+          <div class="res-item">Pierre/Silex <span id="r-pierre">0</span></div>
+          <div class="res-item">Fibres <span id="r-fibres">0</span></div>
+          <div class="res-item">Peaux <span id="r-peaux">0</span></div>
+          <div class="res-item">Médicaments <span id="r-meds">0</span></div>
+        </div>
+      </div>
+
+      <div class="sv-bloc">
+        <div class="sv-titre">Factions</div>
+        <div class="sv-inner">
+          <div id="factions-liste"><div class="faction-vide">Aucune faction</div></div>
+        </div>
+      </div>
+
+      <div class="sv-bloc" style="padding:10px 14px;">
+        <button class="btn-prem" onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'">
+          Premium — 7€/mois
+        </button>
+      </div>
+
+    </div>
+
+    <div class="jeu-panel">
+      <div id="recit"></div>
+      <div class="input-zone">
+        <textarea id="input-joueur" placeholder="Que fais-tu ?" style="display:none;"></textarea>
+        <button id="btn-envoyer" style="display:none;">Agir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const G = {
+  apiKey:'', biome:'aleatoire', mode:'boutons',
+  jour:1, saison:'Été', lieu:'Lieu inconnu',
+  nbChoix:0, historique:[], saveTO:null, adminMode:false,
+  factions:[],
+  comm:{ population:0, moral:80, cohesion:80, influence:20 },
+  reserves:{ eau:0, nourriture:0 },
+  ressources:{ bois:0, pierre:0, fibres:0, peaux:0, meds:0 },
+  joueur:{ sante:100, energie:100 }
+};
+const PAYWALL = 20;
+const SAISONS = ['Printemps','Été','Automne','Hiver'];
+
+function afficherSetup(){
+  document.getElementById('ecran-intro').style.display='none';
+  document.getElementById('ecran-setup').style.display='block';
+  const k=localStorage.getItem('surv_api_key');
+  if(k){document.getElementById('api-key').value=k;document.getElementById('se-souvenir').checked=true;}
+}
+function choisirBiome(b){
+  G.biome=b;
+  document.querySelectorAll('.biome-carte').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('biome-'+b)?.classList.add('sel');
+}
+function choisirMode(m){
+  G.mode=m;
+  document.querySelectorAll('.mode-carte').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('mode-'+m).classList.add('sel');
+  const inp=document.getElementById('input-joueur');
+  const btn=document.getElementById('btn-envoyer');
+  if(m==='boutons'){inp.style.display='none';btn.style.display='none';}
+  else{inp.style.display='flex';btn.style.display='flex';}
+  const sw=document.getElementById('btn-mode-switch');
+  if(sw)sw.textContent=m==='boutons'?'Boutons':'Texte libre';
+}
+function basculerMode(){
+  choisirMode(G.mode==='boutons'?'libre':'boutons');
+  autoSave();
+}
+function lancerJeu(){
+  const k=document.getElementById('api-key').value.trim();
+  if(!k){alert('Entre ta clé API.');return;}
+  G.apiKey=k;
+  if(document.getElementById('se-souvenir').checked)localStorage.setItem('surv_api_key',k);
+  const save=charger();
+  if(save&&save.historique&&save.historique.length>0){
+    fromSave(save);
+    document.getElementById('ecran-setup').style.display='none';
+    afficherReprise(save);return;
+  }
+  document.getElementById('ecran-setup').style.display='none';
+  choisirMode(G.mode);
+  miseAJourUI();envoyerPremier();
+}
+function clicReprendre(){
+  const save=charger();
+  if(!save){afficherSetup();return;}
+  const k=localStorage.getItem('surv_api_key');
+  if(k)G.apiKey=k;
+  document.getElementById('ecran-intro').style.display='none';
+  afficherSetup();
+}
+function afficherReprise(save){
+  const d1=new Date(save.date),d2=new Date();
+  const h=Math.floor((d2-d1)/3600000),jr=Math.floor(h/24);
+  const abs=jr>0?`${jr}j`:h>0?`${h}h`:'Récent';
+  document.getElementById('reprise-info').innerHTML=`
+    <div class="reprise-ligne"><span class="reprise-cle">Jour</span><span class="reprise-val">${save.jour}</span></div>
+    <div class="reprise-ligne"><span class="reprise-cle">Saison</span><span class="reprise-val">${save.saison}</span></div>
+    <div class="reprise-ligne"><span class="reprise-cle">Survivants</span><span class="reprise-val">${save.comm?.population||0}</span></div>
+    <div class="reprise-ligne"><span class="reprise-cle">Lieu</span><span class="reprise-val">${save.lieu||'Inconnu'}</span></div>
+    <div class="reprise-ligne"><span class="reprise-cle">Absent</span><span class="reprise-val">${abs}</span></div>`;
+  document.getElementById('ecran-reprise').style.display='flex';
+  document.getElementById('btn-continuer').onclick=()=>{
+    document.getElementById('ecran-reprise').style.display='none';
+    choisirMode(G.mode);miseAJourUI();
+    envoyerMessage(`Je reprends. Jour ${G.jour}, ${G.saison}, ${G.lieu}. ${G.comm.population} survivants. Eau : ${G.reserves.eau} jours. Nourriture : ${G.reserves.nourriture} jours. Moral : ${G.comm.moral}. Résume la situation et propose mes 4 options.`);
+  };
+  document.getElementById('btn-nouvelle').onclick=()=>{
+    localStorage.removeItem('survivants_save');
+    reinitialiser();
+    document.getElementById('ecran-reprise').style.display='none';
+    choisirMode(G.mode);miseAJourUI();envoyerPremier();
+  };
+}
+
+function sauvegarder(){
+  const d={biome:G.biome,mode:G.mode,jour:G.jour,saison:G.saison,lieu:G.lieu,
+    nbChoix:G.nbChoix,factions:G.factions,comm:G.comm,
+    reserves:G.reserves,ressources:G.ressources,joueur:G.joueur,
+    historique:G.historique.slice(-20),date:new Date().toISOString()};
+  localStorage.setItem('survivants_save',JSON.stringify(d));
+}
+function charger(){
+  const d=localStorage.getItem('survivants_save');
+  if(!d)return null;try{return JSON.parse(d);}catch(e){return null;}
+}
+function fromSave(s){
+  Object.assign(G,{biome:s.biome||'aleatoire',mode:s.mode||'boutons',
+    jour:s.jour||1,saison:s.saison||'Été',lieu:s.lieu||'Lieu inconnu',
+    nbChoix:s.nbChoix||0,factions:s.factions||[],historique:s.historique||[]});
+  if(s.comm)Object.assign(G.comm,s.comm);
+  if(s.reserves)Object.assign(G.reserves,s.reserves);
+  if(s.ressources)Object.assign(G.ressources,s.ressources);
+  if(s.joueur)Object.assign(G.joueur,s.joueur);
+}
+function reinitialiser(){
+  G.jour=1;G.saison='Été';G.lieu='Lieu inconnu';G.nbChoix=0;G.factions=[];G.historique=[];
+  G.comm={population:0,moral:80,cohesion:80,influence:20};
+  G.reserves={eau:0,nourriture:0};
+  G.ressources={bois:0,pierre:0,fibres:0,peaux:0,meds:0};
+  G.joueur={sante:100,energie:100};
+}
+function autoSave(){
+  if(G.saveTO)clearTimeout(G.saveTO);
+  setSI('cours');G.saveTO=setTimeout(()=>{sauvegarder();setSI('ok');setTimeout(()=>setSI(''),2000);},500);
+}
+function setSI(e){
+  const el=document.getElementById('sauv-ind');
+  el.className='sauv'+(e?' '+e:'');
+  el.textContent=e==='cours'?'↑ sauvegarde...':e==='ok'?'✓ sauvegardé':'● prêt';
+}
+
+function miseAJourUI(){
+  document.getElementById('jour-tag').textContent='Jour '+G.jour;
+  document.getElementById('saison-tag').textContent=G.saison;
+  document.getElementById('c-pop').textContent=G.comm.population||'?';
+  document.getElementById('c-biome').textContent=G.lieu;
+  const c=G.comm;
+  document.getElementById('s-moral').textContent=c.moral;
+  document.getElementById('b-moral').style.width=c.moral+'%';
+  document.getElementById('b-moral').style.background=c.moral>50?'var(--vert-vif)':c.moral>25?'var(--or)':'var(--rouge)';
+  document.getElementById('s-cohesion').textContent=c.cohesion;
+  document.getElementById('b-cohesion').style.width=c.cohesion+'%';
+  document.getElementById('b-cohesion').style.background=c.cohesion>50?'var(--vert-vif)':c.cohesion>25?'var(--or)':'var(--rouge)';
+  document.getElementById('s-influence').textContent=c.influence;
+  document.getElementById('b-influence').style.width=Math.min(100,c.influence)+'%';
+  const r=G.reserves;
+  document.getElementById('s-eau').textContent=r.eau;
+  document.getElementById('b-eau').style.width=Math.min(100,r.eau*20)+'%';
+  document.getElementById('b-eau').style.background=r.eau>3?'var(--ciel)':r.eau>1?'var(--or)':'var(--rouge)';
+  document.getElementById('s-nourriture').textContent=r.nourriture;
+  document.getElementById('b-nourriture').style.width=Math.min(100,r.nourriture*10)+'%';
+  document.getElementById('b-nourriture').style.background=r.nourriture>5?'var(--terre-vif)':r.nourriture>2?'var(--or)':'var(--rouge)';
+  const j=G.joueur;
+  document.getElementById('s-sante').textContent=j.sante;
+  document.getElementById('b-sante').style.width=j.sante+'%';
+  document.getElementById('b-sante').style.background=j.sante>60?'var(--vert-vif)':j.sante>30?'var(--or)':'var(--rouge)';
+  document.getElementById('s-energie').textContent=j.energie;
+  document.getElementById('b-energie').style.width=j.energie+'%';
+  document.getElementById('b-energie').style.background=j.energie>50?'var(--vert-vif)':'var(--or)';
+  const res=G.ressources;
+  document.getElementById('r-bois').textContent=res.bois;
+  document.getElementById('r-pierre').textContent=res.pierre;
+  document.getElementById('r-fibres').textContent=res.fibres;
+  document.getElementById('r-peaux').textContent=res.peaux;
+  document.getElementById('r-meds').textContent=res.meds;
+  const fEl=document.getElementById('factions-liste');
+  if(G.factions.length){fEl.innerHTML=G.factions.map(f=>`<div class="faction-item" style="color:${f.hostile?'var(--rouge)':'var(--or)'};">⚑ ${f.nom} (${f.membres})</div>`).join('');}
+  else{fEl.innerHTML='<div class="faction-vide">Aucune faction</div>';}
+}
+
+function construireSP(){
+  const c=G.comm,r=G.reserves,res=G.ressources,j=G.joueur;
+  const biomeDesc=G.biome==='aleatoire'?'biome a generer aleatoirement':G.biome;
+  return `=== SURVIVANTS — CONTEUR ===
+Tu es le Conteur de Survivants. Tu es un auteur, pas un assistant. TOUJOURS en français. Deuxième personne pour le joueur.
+
+=== VOIX LITTERAIRE ===
+CORMAC McCARTHY pour la prose : seche, dense, sans concession. La faim fait vraiment mal. Le froid tue vraiment. Pas d'ornements.
+WILLIAM GOLDING pour les dynamiques sociales : les factions emergent logiquement des tensions. Les humains sous pression revelent ce qu'ils sont vraiment.
+JEAN AUEL pour la survie technique : rigueur et coherence. On ne fabrique pas un arc sans d'abord avoir un couteau. Les ressources du biome sont respectees.
+
+REGLES D'ECRITURE :
+- Phrases courtes et denses. Details sensoriels concrets.
+- Mots INTERDITS : soudain, immediatement, incroyable, impressionnant.
+- La faim, le froid, la fatigue sont decrits avec precision.
+- Jamais deux evenements identiques sur toute la partie.
+
+=== SCENARIO ===
+Au PREMIER MESSAGE : generer aleatoirement et annoncer avec [ SCENARIO ] :
+- Biome exact (si preference : ${biomeDesc})
+- Nombre de survivants (4 a 12) avec profils individuels nommes
+- Saison initiale et conditions meteo
+- Materiel recupere du crash
+- Etat de sante initial des blesses
+
+=== ETAT ACTUEL ===
+Jour : ${G.jour} | Saison : ${G.saison} | Lieu : ${G.lieu}
+Population : ${c.population} survivants
+Moral : ${c.moral}/100 | Cohesion : ${c.cohesion}/100 | Influence joueur : ${c.influence}/100
+Eau : ${r.eau} jours de reserves | Nourriture : ${r.nourriture} jours
+Joueur — Sante : ${j.sante}/100 | Energie : ${j.energie}/100
+Ressources : Bois ${res.bois} | Pierre ${res.pierre} | Fibres ${res.fibres} | Peaux ${res.peaux} | Meds ${res.meds}
+Factions : ${G.factions.length?G.factions.map(f=>f.nom+'('+f.membres+')').join(', '):'Aucune'}
+
+=== MECANIQUES CLES ===
+TEMPS : chaque scene = une periode (quelques heures a une journee). Indiquer [ Jour: X ] apres chaque avancee significative.
+SAISONS : changement avec [ Saison: NomSaison ]. Hiver = danger existentiel si mal prepare.
+EVENEMENTS : chaque semaine (tous les 7 jours environ), introduire un evenement NOUVEAU jamais vu. Maintenir une memoire interne de tout ce qui s'est passe.
+FABRICATION : progression logique — niveau 1 (couteau/lance) avant niveau 2 (arc/hache), etc. Ne pas bruler les etapes.
+FACTIONS : emergent des tensions reelles, pas aleatoirement. Signaler avec [ FACTION: NomFaction | membres: X | hostile: oui/non ]
+REPRODUCTION : possible apres plusieurs mois de stabilite. Signaler avec [ Naissance: prenom ]
+MORT : permanente. Signaler avec [ Mort: NomPersonnage | cause ]
+
+=== REGLES ABSOLUES ===
+1. L'IA NE PROTEGE JAMAIS la communaute.
+2. Une famine non preparee tue. Un hiver ignore tue.
+3. Les morts sont permanentes et irreversibles.
+4. Les survivants ont une memoire — ils se souviennent des decisions passees.
+5. JAMAIS deux evenements identiques.
+6. Les ressources sont finies et se regenerent a un rythme realiste.
+
+=== FORMAT ===
+Narration (120-200 mots, style McCarthy)
+
+[ Stats si pertinent ]
+
+${G.mode==='boutons'?`[ CHOIX ]
+1 — option
+2 — option
+3 — option
+4 — option`:'Question ouverte sur l\'action du joueur.'}
+
+=== MISES A JOUR STATS ===
+[ Pop: X ] [ Moral ±X ] [ Cohesion ±X ] [ Influence ±X ]
+[ Eau: X ] [ Nourriture: X ] (valeurs absolues en jours de reserves)
+[ Sante ±X ] [ Energie ±X ]
+[ Bois ±X ] [ Pierre ±X ] [ Fibres ±X ] [ Peaux ±X ] [ Meds ±X ]
+[ Jour: X ] [ Saison: NomSaison ] [ Lieu: description ]
+[ FACTION: nom | membres: X | hostile: oui/non ]
+[ Mort: NomPersonnage | cause ]
+[ Naissance: prenom ]
+[ EVENEMENT: titre court ]
+
+=== FINS OPTIONNELLES ===
+[ FIN: SAUVETAGE ] — equipe de secours retrouve la communaute
+[ FIN: ETABLISSEMENT ] — communaute stable, seuil de civilisation atteint
+[ FIN: EFFONDREMENT ] — communaute disparait
+
+=== PAYWALL ===
+Quand nbChoix atteint ${PAYWALL} : inserer [ PAYWALL ]`.trim();
+}
+
+function parserReponse(texte){
+  const mises=[];
+
+  // Population
+  texte=texte.replace(/\[\s*Pop\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.comm.population=parseInt(v);mises.push(`[Pop: ${v}]`);return '';});
+
+  // Stats communauté
+  [['Moral','moral',G.comm],['Cohesion','cohesion',G.comm],['Influence','influence',G.comm]].forEach(([label,key,obj])=>{
+    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
+      const n=parseInt(v);obj[key]=Math.max(0,Math.min(100,obj[key]+(op==='-'?-n:n)));
+      mises.push(`[${label}${op}${n}]`);return '';
+    });
+  });
+
+  // Réserves (valeurs absolues)
+  texte=texte.replace(/\[\s*Eau\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.eau=parseInt(v);mises.push(`[Eau: ${v}j]`);return '';});
+  texte=texte.replace(/\[\s*Nourriture\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.nourriture=parseInt(v);mises.push(`[Nourr: ${v}j]`);return '';});
+
+  // Joueur
+  texte=texte.replace(/\[\s*Sant[ée]\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{
+    const n=parseInt(v);G.joueur.sante=Math.max(0,Math.min(100,G.joueur.sante+(op==='-'?-n:n)));
+    mises.push(`[Santé${op}${n}]`);
+    if(G.joueur.sante<=0)setTimeout(()=>declencherFin('effondrement'),500);
+    return '';
+  });
+  texte=texte.replace(/\[\s*[EÉ]nergie\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{
+    const n=parseInt(v);G.joueur.energie=Math.max(0,Math.min(100,G.joueur.energie+(op==='-'?-n:n)));
+    mises.push(`[Énergie${op}${n}]`);return '';
+  });
+
+  // Ressources
+  const resMap=[['Bois','bois'],['Pierre','pierre'],['Fibres','fibres'],['Peaux','peaux'],['Meds','meds']];
+  resMap.forEach(([label,key])=>{
+    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
+      const n=parseInt(v);G.ressources[key]=Math.max(0,G.ressources[key]+(op==='-'?-n:n));
+      mises.push(`[${label}${op}${n}]`);return '';
+    });
+  });
+
+  // Temps
+  texte=texte.replace(/\[\s*Jour\s*:\s*(\d+)\s*\]/gi,(_,n)=>{G.jour=parseInt(n);mises.push(`[Jour ${n}]`);return '';});
+  texte=texte.replace(/\[\s*Saison\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{G.saison=s.trim();mises.push(`[${s.trim()}]`);return '';});
+  texte=texte.replace(/\[\s*Lieu\s*:\s*([^\]]+)\s*\]/gi,(_,l)=>{G.lieu=l.trim();return '';});
+
+  // Scénario
+  texte=texte.replace(/\[\s*SCENARIO\s*\]([\s\S]*?)(?=\[|\n\n|$)/i,(_,contenu)=>{
+    const lignes=contenu.trim().split('\n').filter(l=>l.trim());
+    if(lignes[0])G.lieu=lignes[0].replace(/^-\s*/,'').trim();
+    return `<div class="evenement-bloc"><div class="evenement-header">Scénario généré</div><div class="evenement-texte">${lignes.map(l=>l.replace(/^-\s*/,'')).join('<br>')}</div></div>`;
+  });
+
+  // Événement
+  texte=texte.replace(/\[\s*EVENEMENT\s*:\s*([^\]]+)\s*\]/gi,(_,titre)=>{
+    return `<div class="evenement-bloc"><div class="evenement-header">Événement — ${titre.trim()}</div></div>`;
+  });
+
+  // Changement de saison
+  texte=texte.replace(/\[\s*CHANGEMENT-SAISON\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{
+    G.saison=s.trim();
+    return `<div class="saison-bloc"><div class="saison-header">Changement de saison</div><div class="saison-texte">${s.trim()} — les conditions changent.</div></div>`;
+  });
+
+  // Factions
+  texte=texte.replace(/\[\s*FACTION\s*:\s*([^|]+)\s*\|\s*membres\s*:\s*(\d+)\s*\|\s*hostile\s*:\s*(oui|non)\s*\]/gi,(_,nom,membres,hostile)=>{
+    const existing=G.factions.findIndex(f=>f.nom.toLowerCase()===nom.trim().toLowerCase());
+    const fac={nom:nom.trim(),membres:parseInt(membres),hostile:hostile==='oui'};
+    if(existing>=0)G.factions[existing]=fac;else G.factions.push(fac);
+    mises.push(`[Faction: ${nom.trim()}]`);return '';
+  });
+
+  // Mort
+  texte=texte.replace(/\[\s*Mort\s*:\s*([^|]+)\s*\|\s*cause\s*:\s*([^\]]+)\s*\]/gi,(_,nom,cause)=>{
+    if(G.comm.population>0)G.comm.population--;
+    ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--rouge);"><div class="evenement-header" style="color:var(--rouge);">† ${nom.trim()}</div><div class="evenement-texte">${cause.trim()}</div></div>`);
+    return '';
+  });
+
+  // Naissance
+  texte=texte.replace(/\[\s*Naissance\s*:\s*([^\]]+)\s*\]/gi,(_,prenom)=>{
+    G.comm.population++;
+    ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--vert-vif);"><div class="evenement-header" style="color:var(--vert-vif);">Naissance — ${prenom.trim()}</div><div class="evenement-texte">Un nouvel enfant vient de naître dans la communauté.</div></div>`);
+    return '';
+  });
+
+  // Fins
+  if(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/gi,'');setTimeout(()=>declencherFin('sauvetage'),800);}
+  if(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/gi,'');setTimeout(()=>declencherFin('etablissement'),800);}
+  if(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/gi,'');setTimeout(()=>declencherFin('effondrement'),800);}
+
+  // Paywall
+  if(!G.adminMode&&/\[\s*PAYWALL\s*\]/i.test(texte)){texte=texte.replace(/\[\s*PAYWALL\s*\]/gi,'');setTimeout(declencherPaywall,600);}
+
+  // Choix
+  let htmlChoix='';
+  const mChoix=texte.match(/\[\s*CHOIX\s*\]([\s\S]*?)(?=\n\n|\n\[|$)/i);
+  if(mChoix){
+    texte=texte.replace(mChoix[0],'').trim();
+    const lignes=mChoix[0].split('\n').filter(l=>/^\d[\s—\-]/.test(l.trim()));
+    if(lignes.length){
+      window._choix=lignes.map(l=>l.replace(/^\d\s*[—\-]\s*/,'').trim());
+      htmlChoix='<div class="choix-bloc"><div class="choix-titre">Que fais-tu ?</div>'+
+        window._choix.map((t,i)=>`<button class="choix-btn" onclick="envoyerChoix(${i})">${lignes[i].trim()}</button>`).join('')+'</div>';
+    }
+  }
+
+  miseAJourUI();
+  const ps=texte.trim().split(/\n+/).filter(l=>l.trim()).map(l=>{
+    if(l.startsWith('<'))return l;
+    return `<p>${l.trim()}</p>`;
+  }).join('');
+  const su=mises.length?`<div class="maj-stats">${mises.join('  ')}</div>`:'';
+  return ps+su+htmlChoix;
+}
+
+function declencherFin(type){
+  const fins={
+    sauvetage:{titre:'Sauvetage',texte:'Une equipe de secours vous a retrouves. Vous etes vivants. Certains ne voulaient plus partir.',color:'var(--vert-vif)'},
+    etablissement:{titre:'Etablissement',texte:'Ce n\'est plus un camp de survie. C\'est une communaute. Quelque chose a change ce jour-la, imperceptiblement. Vous avez survécu. Et vous avez construit quelque chose.',color:'var(--or)'},
+    effondrement:{titre:'Effondrement',texte:'La communaute a disparu. Pas en un jour. En une serie de mauvaises decisions, de mauvaises saisons, de mauvaises chances. C\'est ainsi que les civilisations finissent.',color:'var(--rouge)'}
+  };
+  const fin=fins[type];
+  ajouterRecit(`<div style="border:2px solid ${fin.color};padding:24px;margin:12px 0;">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-bottom:8px;">— Fin —</div>
+    <div style="font-family:var(--titre);font-size:24px;font-weight:700;color:${fin.color};text-transform:uppercase;margin-bottom:12px;letter-spacing:1px;">${fin.titre}</div>
+    <div style="font-family:var(--corps);font-size:14px;font-style:italic;color:var(--texte);line-height:1.8;">${fin.texte}</div>
+    <button onclick="nouvellePartie()" style="margin-top:16px;background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:10px 24px;cursor:pointer;text-transform:uppercase;">Nouvelle partie</button>
+  </div>`);
+}
+function nouvellePartie(){
+  localStorage.removeItem('survivants_save');
+  reinitialiser();
+  document.getElementById('recit').innerHTML='';
+  afficherSetup();
+}
+function declencherPaywall(){
+  ajouterRecit(`<div style="border:2px solid var(--vert-dim);background:rgba(58,106,24,0.06);padding:20px;margin:8px 0;text-align:center;">
+    <p style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:10px;">— Accès limité —</p>
+    <p style="font-family:var(--corps);font-size:14px;color:var(--texte-clair);margin-bottom:16px;">Tu as atteint la limite gratuite. Pour continuer à construire ta communauté jusqu'à la fin, passe à l'abonnement Récit Games.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'" style="background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 24px;cursor:pointer;text-transform:uppercase;">S'abonner — 7€/mois</button>
+      <button onclick="saisirCode()" style="background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 20px;cursor:pointer;text-transform:uppercase;">J'ai un code</button>
+    </div>
+  </div>`);
+  document.getElementById('btn-envoyer').disabled=true;
+  document.getElementById('input-joueur').disabled=true;
+}
+function saisirCode(){
+  const code=prompt('Entre ton code abonnement Récit Games :');
+  if(!code)return;
+  fetch('https://recitgames-api.vercel.app/api/verify-code',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({code:code.trim().toUpperCase()})
+  }).then(r=>r.json()).then(data=>{
+    if(data.valid){
+      if(data.admin){G.nbChoix=0;G.adminMode=true;ajouterRecit('<p style="color:var(--vert-vif);font-family:var(--mono);font-size:11px;letter-spacing:2px;">✓ Accès admin activé.</p>');}
+      else{G.nbChoix=0;document.getElementById('btn-envoyer').disabled=false;document.getElementById('input-joueur').disabled=false;ajouterRecit('<p style="color:var(--vert-vif);font-family:var(--mono);font-size:11px;letter-spacing:2px;">✓ Code validé. La survie continue.</p>');}
+    }else{alert('Code invalide.');}
+  }).catch(()=>alert('Erreur de vérification.'));
+}
+
+async function streamerMessage(msg){
+  G.historique.push({role:'user',content:msg});
+  const recit=document.getElementById('recit');
+  const entree=document.createElement('div');entree.className='entree';
+  recit.appendChild(entree);recit.scrollTop=entree.offsetTop-20;
+  const sp=document.createElement('p');entree.appendChild(sp);
+  const cur=document.createElement('span');cur.className='curseur';sp.appendChild(cur);
+  let full='';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':G.apiKey.replace(/[^\x20-\x7E]/g,'').trim(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1400,stream:true,system:construireSP(),messages:G.historique})
+    });
+    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`Erreur ${res.status}`);}
+    const reader=res.body.getReader();const dec=new TextDecoder('utf-8',{fatal:false});
+    let buffer='';
+    while(true){
+      const{done,value}=await reader.read();if(done)break;
+      buffer+=dec.decode(value,{stream:true});
+      const lignes=buffer.split('\n');buffer=lignes.pop();
+      for(const ligne of lignes){
+        if(!ligne.startsWith('data: '))continue;
+        const d=ligne.slice(6).trim();if(d==='[DONE]')continue;
+        try{const p=JSON.parse(d);if(p.type==='content_block_delta'&&p.delta?.text){full+=p.delta.text;sp.textContent=full;sp.appendChild(cur);}}catch(e){}
+      }
+    }
+    cur.remove();
+    G.historique.push({role:'assistant',content:full});
+    if(G.historique.length>20)G.historique=G.historique.slice(-20);
+    entree.innerHTML=parserReponse(full);
+    autoSave();
+  }catch(err){
+    cur.remove();
+    entree.innerHTML=`<p style="color:var(--rouge);font-family:var(--mono);font-size:12px;">Erreur : ${err.message}</p>`;
+  }
+}
+function ajouterRecit(html){
+  const recit=document.getElementById('recit');
+  const e=document.createElement('div');e.className='entree';e.innerHTML=html;
+  recit.appendChild(e);recit.scrollTop=recit.scrollHeight;
+}
+async function envoyerMessage(msg){
+  if(!msg.trim())return;
+  const btn=document.getElementById('btn-envoyer');
+  const inp=document.getElementById('input-joueur');
+  btn.disabled=true;
+  if(G.mode!=='boutons')inp.disabled=true;
+  const recit=document.getElementById('recit');
+  if(recit.children.length>0){
+    const sep=document.createElement('div');sep.className='entree';
+    sep.innerHTML='<hr class="sep"/>';recit.appendChild(sep);
+  }
+  ajouterRecit(`<div class="action-joueur">▸ ${msg}</div>`);
+  inp.value='';
+  if(!G.adminMode)G.nbChoix++;
+  await streamerMessage(msg);
+  btn.disabled=false;
+  if(G.mode!=='boutons')inp.disabled=false;
+  if(window.innerWidth>700&&G.mode!=='boutons')inp.focus();
+}
+function envoyerChoix(i){const t=window._choix&&window._choix[i];if(t)envoyerMessage(t);}
+async function envoyerPremier(){
+  miseAJourUI();
+  const biomeMsg=G.biome==='aleatoire'?'biome aleatoire':'biome : '+G.biome;
+  const msg=`Je commence Survivants. ${biomeMsg}. Genere le scenario complet : lieu exact, nombre de survivants avec leurs profils, saison, materiel recupere, blessures initiales. Commence le Jour 1.`;
+  await streamerMessage(msg);
+}
+
+document.getElementById('btn-envoyer').addEventListener('click',()=>envoyerMessage(document.getElementById('input-joueur').value));
+document.getElementById('input-joueur').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();envoyerMessage(e.target.value);}});
+window.addEventListener('load',()=>{
+  const save=charger();
+  if(save&&save.historique&&save.historique.length>0)document.getElementById('btn-reprendre-intro').style.display='block';
+});
+</script>
+</body>
+</html>
