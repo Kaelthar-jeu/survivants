@@ -16,23 +16,16 @@
   --vert:#3a6a18;--vert-vif:#4a8a20;--vert-dim:#1a3a08;
   --terre:#7a4a18;--terre-vif:#9a6020;--terre-dim:#4a2808;
   --rouge:#7a1a1a;--or:#8a7020;--ciel:#2a4a6a;
-  --mono:'Share Tech Mono',monospace;
-  --titre:'Roboto Condensed',sans-serif;
-  --corps:'Libre Baskerville',Georgia,serif;
+  --mono:"Share Tech Mono",monospace;
+  --titre:"Roboto Condensed",sans-serif;
+  --corps:"Libre Baskerville",Georgia,serif;
 }
 html,body{height:100%;background:var(--bg);color:var(--texte);font-family:var(--corps);font-size:16px;line-height:1.7;overflow-x:hidden;}
-
-body::before{content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;}
-
+body::before{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27300%27 height=%27300%27 filter=%27url(%23n)%27 opacity=%270.035%27/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
 .studio-bar{position:relative;z-index:10;background:#060806;border-bottom:2px solid var(--vert-dim);padding:6px 16px;text-align:center;}
 .studio-bar a{color:var(--texte-dim);font-size:11px;text-decoration:none;letter-spacing:3px;font-family:var(--mono);transition:color 0.2s;}
 .studio-bar a:hover{color:var(--vert-vif);}
-
-/* ── INTRO ── */
 #ecran-intro{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;}
-
 .intro-inner{max-width:560px;width:100%;text-align:left;position:relative;z-index:1;}
 .intro-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:24px;animation:app 0.7s ease 0.1s both;}
 .intro-titre{font-family:var(--titre);font-size:clamp(64px,16vw,120px);font-weight:700;color:var(--texte-clair);line-height:0.9;letter-spacing:-1px;text-transform:uppercase;animation:app 0.7s ease 0.2s both;}
@@ -45,8 +38,6 @@ body::before{content:'';position:fixed;inset:0;
 .btn-intro-s{display:none;background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:11px;letter-spacing:3px;padding:14px 24px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
 .btn-intro-s:hover{border-color:var(--vert-dim);color:var(--texte);}
 @keyframes app{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:translateX(0);}}
-
-/* ── SETUP ── */
 #ecran-setup{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;}
 .setup-wrap{max-width:620px;margin:auto;padding:40px 0;}
 .setup-entete{margin-bottom:36px;padding-bottom:16px;border-bottom:2px solid var(--vert-dim);}
@@ -57,30 +48,24 @@ body::before{content:'';position:fixed;inset:0;
 .setup-input{width:100%;background:var(--bg3);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--mono);font-size:14px;padding:10px 0;outline:none;transition:border-color 0.2s;border-radius:0;}
 .setup-input:focus{border-bottom-color:var(--vert-vif);}
 .setup-input::placeholder{color:var(--texte-dim);}
-
 .biome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
 .biome-carte{background:var(--bg3);border:2px solid var(--border);padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
 .biome-carte:hover{border-color:var(--border2);}
 .biome-carte.sel{border-color:var(--vert-vif);background:rgba(58,106,24,0.1);}
 .biome-icon{font-size:20px;margin-bottom:4px;}
 .biome-nom{font-family:var(--titre);font-size:13px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
-
 .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .mode-carte{background:var(--bg3);border:2px solid var(--border);padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
 .mode-carte:hover{border-color:var(--border2);}
 .mode-carte.sel{border-color:var(--vert-vif);background:rgba(58,106,24,0.08);}
 .mode-nom{font-family:var(--titre);font-size:13px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
 .mode-desc{font-family:var(--mono);font-size:9px;color:var(--texte-dim);margin-top:3px;}
-
 .checkbox-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;margin-top:8px;}
 .checkbox-wrap input{accent-color:var(--vert-vif);cursor:pointer;}
 .checkbox-label{font-family:var(--mono);font-size:10px;color:var(--texte-dim);letter-spacing:1px;}
-
 .btn-setup{width:100%;background:var(--vert);border:none;color:#fff;font-family:var(--titre);font-size:15px;font-weight:700;letter-spacing:4px;padding:16px;cursor:pointer;transition:background 0.2s;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));margin-top:8px;}
 .btn-setup:hover{background:var(--vert-vif);}
 .btn-setup:disabled{background:var(--border2);cursor:not-allowed;clip-path:none;}
-
-/* ── REPRISE ── */
 #ecran-reprise{display:none;position:fixed;inset:0;z-index:250;background:rgba(10,13,8,0.97);align-items:center;justify-content:center;padding:20px;}
 .reprise-box{background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--vert-vif);max-width:440px;width:100%;padding:36px;}
 .reprise-ref{font-family:var(--mono);font-size:9px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:6px;}
@@ -95,8 +80,6 @@ body::before{content:'';position:fixed;inset:0;
 .rbp:hover{background:var(--vert-vif);}
 .rbn{background:var(--bg3);color:var(--texte-dim);border:1px solid var(--border2);}
 .rbn:hover{border-color:var(--vert-dim);color:var(--texte);}
-
-/* ── APP ── */
 #app{display:flex;flex-direction:column;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 16px;position:relative;z-index:1;}
 header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 12px;border-bottom:2px solid var(--vert-dim);flex-shrink:0;}
 .logo{font-family:var(--titre);font-size:20px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
@@ -109,68 +92,43 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 .sauv{font-family:var(--mono);font-size:10px;color:var(--texte-dim);}
 .sauv.ok{color:var(--vert-vif);}
 .sauv.cours{color:var(--or);}
-
-.main{display:flex;flex:1;gap:14px;padding:14px 0;min-height:0;}
-
-/* ── PANNEAU SURVIE ── */
-.survie-panel{width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:calc(100vh - 80px);position:sticky;top:0;}
-.sv-bloc{background:var(--bg2);border:1px solid var(--border);position:relative;z-index:5;}
-.sv-titre{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);background:var(--bg3);padding:5px 12px;border-bottom:1px solid var(--border);}
-.sv-inner{padding:12px 14px;}
-.sv-ligne{display:flex;justify-content:space-between;align-items:center;padding:3px 0;}
-.sv-nom{font-family:var(--mono);font-size:10px;color:var(--texte-dim);}
-.sv-val{font-family:var(--mono);font-size:11px;color:var(--vert-vif);font-weight:500;}
-.sv-barre-wrap{background:var(--bg4);height:3px;margin-top:2px;margin-bottom:5px;border-radius:1px;overflow:hidden;}
-.sv-barre{height:100%;background:var(--vert-vif);transition:width 0.4s ease;border-radius:1px;}
-.sv-barre.terre{background:var(--terre-vif);}
-.sv-barre.rouge{background:var(--rouge);}
-.sv-barre.or{background:var(--or);}
-.sv-barre.ciel{background:var(--ciel);}
-
-.comm-bloc{padding:14px;text-align:center;}
-.comm-pop{font-family:var(--titre);font-size:36px;font-weight:700;color:var(--texte-clair);line-height:1;}
-.comm-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-top:2px;}
-.comm-biome{font-family:var(--mono);font-size:9px;color:var(--vert-vif);margin-top:6px;letter-spacing:1px;}
-
-.res-item{font-family:var(--mono);font-size:10px;color:var(--texte-dim);padding:3px 0;border-bottom:1px solid var(--border);}
-.res-item:last-child{border-bottom:none;}
-.res-item span{color:var(--terre-vif);float:right;}
-
-.faction-item{font-family:var(--mono);font-size:10px;padding:4px 0;border-bottom:1px solid var(--border);line-height:1.4;}
-.faction-item:last-child{border-bottom:none;}
-.faction-vide{font-family:var(--mono);font-size:10px;color:var(--border2);font-style:italic;}
-
-.btn-prem{width:100%;padding:11px;background:linear-gradient(135deg,var(--vert-dim),var(--terre-dim));color:#fff;border:none;font-family:var(--mono);font-size:9px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:opacity 0.2s;}
-.btn-prem:hover{opacity:0.85;}
-
-/* ── JEU ── */
-.jeu-panel{flex:1;display:flex;flex-direction:column;min-width:0;gap:10px;position:relative;z-index:5;}
-#recit{flex:1;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--vert-dim);padding:22px;overflow-y:auto;min-height:0;position:relative;z-index:5;}
+/* Panneau déroulant */
+.sv-panel-btn{background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:9px;padding:4px 10px;cursor:pointer;transition:all 0.2s;letter-spacing:1px;text-transform:uppercase;}
+.sv-panel-btn:hover{border-color:var(--vert-vif);color:var(--vert-vif);}
+#sv-panel{display:none;background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 0;}
+#sv-panel.open{display:block;}
+.sv-inner-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.sv-pt{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:8px;}
+.sv-pr{display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:11px;}
+.sv-pk{color:var(--texte-dim);font-family:var(--mono);}
+.sv-pv{color:var(--vert-vif);font-family:var(--mono);font-weight:500;}
+.sv-pb-wrap{background:var(--bg4);height:2px;margin-top:1px;margin-bottom:4px;overflow:hidden;border-radius:1px;}
+.sv-pb{height:100%;background:var(--vert-vif);transition:width 0.4s ease;}
+@media(max-width:700px){.sv-inner-panel{grid-template-columns:1fr 1fr;}}
+.main{display:block;flex:1;padding:14px 0;min-height:0;}
+.survie-panel{display:none;}
+.jeu-panel{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;z-index:5;}
+#recit{flex:1;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--vert-dim);padding:22px;overflow-y:auto;min-height:calc(100svh - 140px);padding-bottom:85px;position:relative;z-index:5;}
 .entree{margin-bottom:22px;animation:fadeIn 0.35s ease;position:relative;z-index:5;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-.entree p{font-family:var(--corps);font-size:16px;line-height:1.9;color:var(--texte-clair);margin-bottom:10px;}
+.entree p{font-family:var(--corps);font-size:21px;line-height:1.9;color:var(--texte-clair);margin-bottom:10px;}
 .action-joueur{font-family:var(--mono);font-size:11px;color:var(--texte-dim);padding:7px 12px;border-left:3px solid var(--vert-dim);margin-bottom:12px;background:rgba(58,106,24,0.05);}
-
 .evenement-bloc{background:var(--bg3);border:1px solid var(--border2);border-left:4px solid var(--terre-vif);padding:14px 16px;margin:10px 0;}
 .evenement-header{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--terre-vif);text-transform:uppercase;margin-bottom:6px;}
 .evenement-texte{font-family:var(--corps);font-size:13px;color:var(--texte);line-height:1.7;}
-
 .saison-bloc{background:rgba(138,112,32,0.08);border:1px solid var(--or);padding:12px 16px;margin:10px 0;text-align:center;}
 .saison-header{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--or);text-transform:uppercase;margin-bottom:4px;}
 .saison-texte{font-family:var(--corps);font-size:13px;font-style:italic;color:var(--texte-clair);}
-
 .maj-stats{font-family:var(--mono);font-size:11px;color:var(--vert-vif);padding:6px 10px;background:rgba(58,106,24,0.08);border-left:2px solid var(--vert-dim);margin-top:8px;letter-spacing:1px;}
 .sep{border:none;border-top:1px solid var(--border);margin:14px 0;}
 .curseur{display:inline-block;width:2px;height:14px;background:var(--vert-vif);animation:clign 0.7s infinite;vertical-align:text-bottom;margin-left:2px;}
 @keyframes clign{0%,50%{opacity:1;}51%,100%{opacity:0;}}
-
 .choix-bloc{background:var(--bg3);border:1px solid var(--border2);border-top:3px solid var(--vert-vif);padding:14px 16px;margin-top:12px;position:relative;z-index:10;}
 .choix-titre{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);margin-bottom:10px;}
-.choix-btn{display:block;width:100%;text-align:left;background:var(--bg2);border:1px solid var(--border);border-left:3px solid transparent;color:var(--texte-clair);font-family:var(--corps);font-size:14px;padding:12px 14px;margin-bottom:7px;cursor:pointer;transition:all 0.2s;line-height:1.5;position:relative;z-index:10;pointer-events:auto;}
+.choix-btn{display:block;width:100%;text-align:left;background:var(--bg2);border:1px solid var(--border);border-left:3px solid transparent;color:var(--texte-clair);font-family:var(--corps);font-size:18px;padding:13px 14px;margin-bottom:7px;cursor:pointer;transition:all 0.2s;line-height:1.5;position:relative;z-index:10;pointer-events:auto;}
 .choix-btn:hover{background:rgba(58,106,24,0.12);border-left-color:var(--vert-vif);border-color:var(--vert-dim);}
 .choix-btn:last-child{margin-bottom:0;}
-
-.input-zone{display:flex;gap:8px;flex-shrink:0;position:relative;z-index:5;}
+.input-zone{display:flex;gap:8px;flex-shrink:0;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 16px;z-index:100;max-width:1200px;margin:0 auto;box-sizing:border-box;}
 #input-joueur{flex:1;background:var(--bg2);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--corps);font-size:14px;padding:12px 14px;resize:none;height:52px;outline:none;transition:border-color 0.2s;}
 #input-joueur:focus{border-bottom-color:var(--vert-vif);}
 #input-joueur::placeholder{color:var(--texte-dim);font-style:italic;}
@@ -178,125 +136,32 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 #btn-envoyer{background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:0 18px;cursor:pointer;transition:background 0.2s;flex-shrink:0;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);}
 #btn-envoyer:hover{background:var(--vert-vif);}
 #btn-envoyer:disabled{background:var(--bg4);cursor:not-allowed;clip-path:none;}
-
+.btn-prem{width:100%;padding:11px;background:linear-gradient(135deg,var(--vert-dim),var(--terre-dim));color:#fff;border:none;font-family:var(--mono);font-size:9px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:opacity 0.2s;}
+.btn-prem:hover{opacity:0.85;}
+.faction-vide{font-family:var(--mono);font-size:10px;color:var(--border2);font-style:italic;}
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--vert-dim);border-radius:2px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--vert-vif);}
-
 @media(max-width:700px){
   #app{padding:0 8px;}
-  .main{flex-direction:column;gap:8px;padding:8px 0;}
-  .survie-panel{width:100%;max-height:none;position:static;flex-direction:row;flex-wrap:wrap;gap:8px;overflow:visible;}
-  .survie-panel > div{min-width:140px;flex:1;}
-  #recit{min-height:260px;max-height:48vh;padding:14px;}
-  .entree p{font-size:15px;}
+  #recit{min-height:calc(100vh - 160px);padding:16px;padding-bottom:85px;}
+  .entree p{font-size:19px;line-height:1.85;}
+  .choix-btn{font-size:17px;padding:13px 12px;}
   .biome-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 </style>
 </head>
 <body>
-
-<div class="studio-bar">
-  <a href="https://recitgames.vercel.app">&#9664; RÉCIT GAMES</a>
-</div>
+<div class="studio-bar"><a href="https://recitgames.vercel.app">&#9664; RÉCIT GAMES</a></div>
 
 <!-- INTRO -->
 <div id="ecran-intro">
-  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="ciel-s" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#080c06"/>
-        <stop offset="40%" stop-color="#0d1208"/>
-        <stop offset="100%" stop-color="#060804"/>
-      </linearGradient>
-      <radialGradient id="lune-s" cx="75%" cy="12%" r="10%">
-        <stop offset="0%" stop-color="rgba(200,210,160,0.15)"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-      <radialGradient id="feu-s" cx="50%" cy="75%" r="20%">
-        <stop offset="0%" stop-color="rgba(180,80,20,0.3)"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-    </defs>
-    <rect width="800" height="600" fill="url(#ciel-s)"/>
-    <rect width="800" height="600" fill="url(#lune-s)"/>
-    <!-- Étoiles -->
-    <circle cx="100" cy="40" r="1" fill="rgba(255,255,220,0.5)"/>
-    <circle cx="200" cy="20" r="0.8" fill="rgba(255,255,220,0.4)"/>
-    <circle cx="350" cy="35" r="1" fill="rgba(255,255,220,0.5)"/>
-    <circle cx="500" cy="15" r="0.8" fill="rgba(255,255,220,0.3)"/>
-    <circle cx="650" cy="45" r="1" fill="rgba(255,255,220,0.4)"/>
-    <circle cx="750" cy="25" r="0.8" fill="rgba(255,255,220,0.35)"/>
-    <!-- Lune -->
-    <circle cx="600" cy="65" r="22" fill="rgba(200,210,160,0.12)"/>
-    <circle cx="600" cy="65" r="14" fill="rgba(200,210,160,0.08)"/>
-    <!-- Silhouette forêt fond -->
-    <path d="M0,300 Q20,260 40,280 Q60,220 80,250 Q100,200 120,230 Q140,190 160,220 Q180,180 200,210 Q220,170 240,200 Q260,185 280,210 Q300,175 320,205 Q340,180 360,200 Q380,170 400,195 Q420,175 440,200 Q460,185 480,205 Q500,175 520,198 Q540,180 560,200 Q580,170 600,195 Q620,180 640,205 Q660,190 680,210 Q700,195 720,215 Q740,200 760,218 Q780,205 800,220 L800,600 L0,600 Z" fill="#0a0e06"/>
-    <!-- Forêt milieu -->
-    <path d="M0,370 Q30,330 60,350 Q90,310 120,335 Q150,295 180,320 Q210,290 240,315 Q270,300 300,320 Q330,295 360,318 Q390,300 420,322 Q450,305 480,325 Q510,305 540,328 Q570,308 600,330 Q630,312 660,335 Q690,318 720,340 Q750,325 780,345 L800,600 L0,600 Z" fill="#0c1208"/>
-    <!-- Arbres proches détaillés -->
-    <!-- Arbre 1 -->
-    <rect x="118" y="300" width="12" height="200" fill="#0a0d06"/>
-    <path d="M90,300 L124,200 L158,300 Z" fill="#0e1508"/>
-    <path d="M96,260 L124,170 L152,260 Z" fill="#101808"/>
-    <path d="M102,225 L124,145 L146,225 Z" fill="#122008"/>
-    <!-- Arbre 2 -->
-    <rect x="268" y="320" width="10" height="180" fill="#080c05"/>
-    <path d="M244,320 L273,230 L302,320 Z" fill="#0c1406"/>
-    <path d="M249,282 L273,200 L297,282 Z" fill="#0e1808"/>
-    <path d="M254,248 L273,175 L292,248 Z" fill="#101a08"/>
-    <!-- Arbre 3 -->
-    <rect x="488" y="310" width="14" height="190" fill="#0a0d06"/>
-    <path d="M460,310 L495,210 L530,310 Z" fill="#0e1508"/>
-    <path d="M466,270 L495,178 L524,270 Z" fill="#101808"/>
-    <path d="M472,235 L495,152 L518,235 Z" fill="#122008"/>
-    <!-- Arbre 4 -->
-    <rect x="658" y="305" width="11" height="195" fill="#080c05"/>
-    <path d="M634,305 L663,208 L692,305 Z" fill="#0c1406"/>
-    <path d="M640,268 L663,178 L686,268 Z" fill="#0e1808"/>
-    <!-- Sol / herbe -->
-    <rect x="0" y="480" width="800" height="120" fill="#080c05"/>
-    <rect x="0" y="476" width="800" height="6" fill="#0e1408"/>
-    <!-- Feu de camp -->
-    <rect x="376" y="490" width="48" height="6" fill="#1a1408" rx="2"/>
-    <rect x="382" y="470" width="6" height="28" fill="#1a1408" rx="1" transform="rotate(-15,385,470)"/>
-    <rect x="410" y="470" width="6" height="28" fill="#1a1408" rx="1" transform="rotate(15,413,470)"/>
-    <rect x="396" y="460" width="6" height="30" fill="#1a1408" rx="1"/>
-    <!-- Flammes -->
-    <ellipse cx="400" cy="460" rx="12" ry="18" fill="rgba(180,80,20,0.6)"/>
-    <ellipse cx="400" cy="455" rx="8" ry="14" fill="rgba(220,120,20,0.5)"/>
-    <ellipse cx="400" cy="450" rx="5" ry="10" fill="rgba(240,180,40,0.4)"/>
-    <rect width="800" height="600" fill="url(#feu-s)"/>
-    <!-- Silhouettes survivants autour du feu -->
-    <ellipse cx="360" cy="498" rx="10" ry="14" fill="#060806"/>
-    <circle cx="360" cy="484" r="7" fill="#060806"/>
-    <ellipse cx="440" cy="498" rx="10" ry="14" fill="#060806"/>
-    <circle cx="440" cy="484" r="7" fill="#060806"/>
-    <ellipse cx="380" cy="503" rx="9" ry="12" fill="#060806"/>
-    <circle cx="380" cy="491" r="6" fill="#060806"/>
-    <ellipse cx="420" cy="503" rx="9" ry="12" fill="#060806"/>
-    <circle cx="420" cy="491" r="6" fill="#060806"/>
-    <!-- Épave avion à droite -->
-    <path d="M580,440 L720,420 L730,435 L590,460 Z" fill="rgba(30,35,25,0.8)"/>
-    <path d="M640,425 L700,415 L705,430 L645,440 Z" fill="rgba(25,30,20,0.9)"/>
-    <!-- Vignette -->
-    <radialGradient id="vig-s" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="transparent"/>
-      <stop offset="100%" stop-color="rgba(8,10,6,0.7)"/>
-    </radialGradient>
-    <rect width="800" height="600" fill="url(#vig-s)"/>
-  </svg>
-
   <div class="intro-inner">
     <div class="intro-tag">Roman interactif de survie · Récit Games</div>
     <div class="intro-titre">Sur<span>vivants</span></div>
     <div class="intro-sep"></div>
-    <div class="intro-accroche">
-      L'avion s'est écrasé.<br>
-      Il y a des survivants.<br>
-      Ce qui arrive ensuite dépend de vous.
-    </div>
+    <div class="intro-accroche">L'avion s'est écrasé.<br>Il y a des survivants.<br>Ce qui arrive ensuite dépend de vous.</div>
     <div class="intro-btns">
       <button class="btn-intro-p" onclick="afficherSetup()">Commencer à survivre</button>
       <button class="btn-intro-s" id="btn-reprendre-intro" onclick="clicReprendre()">Reprendre</button>
@@ -307,64 +172,30 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 <!-- SETUP -->
 <div id="ecran-setup">
   <div class="setup-wrap">
-    <div class="setup-entete">
-      <div class="setup-ref">Configuration de la partie</div>
-      <div class="setup-titre">Survivants</div>
-    </div>
-
+    <div class="setup-entete"><div class="setup-ref">Configuration de la partie</div><div class="setup-titre">Survivants</div></div>
     <div class="setup-bloc">
       <label class="setup-label">Clé API Anthropic</label>
       <input class="setup-input" type="password" id="api-key" placeholder="sk-ant-api03-..." autocomplete="off"/>
-      <label class="checkbox-wrap">
-        <input type="checkbox" id="se-souvenir"/>
-        <span class="checkbox-label">Se souvenir sur cet appareil</span>
-      </label>
+      <label class="checkbox-wrap"><input type="checkbox" id="se-souvenir"/><span class="checkbox-label">Se souvenir sur cet appareil</span></label>
     </div>
-
     <div class="setup-bloc">
       <label class="setup-label">Biome préféré — ou laisser l'IA choisir</label>
       <div class="biome-grid">
-        <div class="biome-carte sel" id="biome-aleatoire" onclick="choisirBiome('aleatoire')">
-          <div class="biome-icon">🎲</div>
-          <div class="biome-nom">Aléatoire</div>
-        </div>
-        <div class="biome-carte" id="biome-jungle" onclick="choisirBiome('jungle')">
-          <div class="biome-icon">🌿</div>
-          <div class="biome-nom">Jungle</div>
-        </div>
-        <div class="biome-carte" id="biome-foret" onclick="choisirBiome('foret')">
-          <div class="biome-icon">🌲</div>
-          <div class="biome-nom">Forêt</div>
-        </div>
-        <div class="biome-carte" id="biome-montagne" onclick="choisirBiome('montagne')">
-          <div class="biome-icon">⛰️</div>
-          <div class="biome-nom">Montagne</div>
-        </div>
-        <div class="biome-carte" id="biome-ile" onclick="choisirBiome('ile')">
-          <div class="biome-icon">🏝️</div>
-          <div class="biome-nom">Île</div>
-        </div>
-        <div class="biome-carte" id="biome-desert" onclick="choisirBiome('desert')">
-          <div class="biome-icon">🏜️</div>
-          <div class="biome-nom">Désert</div>
-        </div>
+        <div class="biome-carte sel" id="biome-aleatoire" onclick="choisirBiome('aleatoire')"><div class="biome-icon">🎲</div><div class="biome-nom">Aléatoire</div></div>
+        <div class="biome-carte" id="biome-jungle" onclick="choisirBiome('jungle')"><div class="biome-icon">🌿</div><div class="biome-nom">Jungle</div></div>
+        <div class="biome-carte" id="biome-foret" onclick="choisirBiome('foret')"><div class="biome-icon">🌲</div><div class="biome-nom">Forêt</div></div>
+        <div class="biome-carte" id="biome-montagne" onclick="choisirBiome('montagne')"><div class="biome-icon">⛰️</div><div class="biome-nom">Montagne</div></div>
+        <div class="biome-carte" id="biome-ile" onclick="choisirBiome('ile')"><div class="biome-icon">🏝️</div><div class="biome-nom">Île</div></div>
+        <div class="biome-carte" id="biome-desert" onclick="choisirBiome('desert')"><div class="biome-icon">🏜️</div><div class="biome-nom">Désert</div></div>
       </div>
     </div>
-
     <div class="setup-bloc">
       <label class="setup-label">Mode d'interaction</label>
       <div class="mode-grid">
-        <div class="mode-carte sel" id="mode-boutons" onclick="choisirMode('boutons')">
-          <div class="mode-nom">Boutons</div>
-          <div class="mode-desc">4 choix proposés</div>
-        </div>
-        <div class="mode-carte" id="mode-libre" onclick="choisirMode('libre')">
-          <div class="mode-nom">Texte libre</div>
-          <div class="mode-desc">Tu décides</div>
-        </div>
+        <div class="mode-carte sel" id="mode-boutons" onclick="choisirMode('boutons')"><div class="mode-nom">Boutons</div><div class="mode-desc">4 choix proposés</div></div>
+        <div class="mode-carte" id="mode-libre" onclick="choisirMode('libre')"><div class="mode-nom">Texte libre</div><div class="mode-desc">Tu décides</div></div>
       </div>
     </div>
-
     <button class="btn-setup" id="btn-lancer" onclick="lancerJeu()">S'écraser</button>
     <p style="font-family:var(--mono);font-size:10px;color:var(--texte-dim);text-align:center;margin-top:12px;letter-spacing:1px;">Chaque partie est générée aléatoirement · Progression sauvegardée</p>
   </div>
@@ -392,75 +223,67 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
       <div class="saison-tag" id="saison-tag">Été</div>
       <button class="btn-mode-hdr" id="btn-mode-switch" onclick="basculerMode()">Boutons</button>
       <div class="sauv" id="sauv-ind">● prêt</div>
+      <button class="sv-panel-btn" onclick="toggleSvPanel()">Camp ▾</button>
     </div>
   </header>
+
+  <!-- Panneau déroulant -->
+  <div id="sv-panel">
+    <div class="sv-inner-panel">
+      <div>
+        <div class="sv-pt">Communauté</div>
+        <div style="font-family:var(--titre);font-size:28px;font-weight:700;color:var(--texte-clair);line-height:1;" id="svp-pop">—</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-top:2px;">Survivants</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--vert-vif);margin-top:6px;" id="svp-biome">Lieu inconnu</div>
+        <div class="sv-pr" style="margin-top:8px;"><span class="sv-pk">Moral</span><span class="sv-pv" id="svp-moral">80</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-moral" style="width:80%;"></div></div>
+        <div class="sv-pr"><span class="sv-pk">Cohésion</span><span class="sv-pv" id="svp-cohesion">80</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-cohesion" style="width:80%;"></div></div>
+        <div class="sv-pr"><span class="sv-pk">Influence</span><span class="sv-pv" id="svp-influence">20</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-influence" style="width:20%;background:var(--or);"></div></div>
+      </div>
+      <div>
+        <div class="sv-pt">Réserves</div>
+        <div class="sv-pr"><span class="sv-pk">💧 Eau (jours)</span><span class="sv-pv" id="svp-eau">0</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-eau" style="width:0%;background:var(--ciel);"></div></div>
+        <div class="sv-pr"><span class="sv-pk">🍖 Nourriture (j.)</span><span class="sv-pv" id="svp-nourr">0</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-nourr" style="width:0%;background:var(--terre-vif);"></div></div>
+        <div class="sv-pt" style="margin-top:10px;">Joueur</div>
+        <div class="sv-pr"><span class="sv-pk">Santé</span><span class="sv-pv" id="svp-sante">100</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-sante" style="width:100%;"></div></div>
+        <div class="sv-pr"><span class="sv-pk">Énergie</span><span class="sv-pv" id="svp-energie">100</span></div>
+        <div class="sv-pb-wrap"><div class="sv-pb" id="svp-b-energie" style="width:100%;"></div></div>
+      </div>
+      <div>
+        <div class="sv-pt">Ressources</div>
+        <div class="sv-pr"><span class="sv-pk">Bois</span><span class="sv-pv" id="svp-bois">0</span></div>
+        <div class="sv-pr"><span class="sv-pk">Pierre/Silex</span><span class="sv-pv" id="svp-pierre">0</span></div>
+        <div class="sv-pr"><span class="sv-pk">Fibres</span><span class="sv-pv" id="svp-fibres">0</span></div>
+        <div class="sv-pr"><span class="sv-pk">Peaux</span><span class="sv-pv" id="svp-peaux">0</span></div>
+        <div class="sv-pr"><span class="sv-pk">Médicaments</span><span class="sv-pv" id="svp-meds">0</span></div>
+      </div>
+      <div>
+        <div class="sv-pt">Factions</div>
+        <div id="svp-factions"><div class="faction-vide">Aucune faction</div></div>
+        <div style="margin-top:12px;"><button class="btn-prem" onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'">Premium — 7€/mois</button></div>
+      </div>
+    </div>
+  </div>
+
   <div class="main">
     <div class="survie-panel">
-
-      <div class="sv-bloc comm-bloc">
-        <div class="comm-pop" id="c-pop">—</div>
-        <div class="comm-label">Survivants</div>
-        <div class="comm-biome" id="c-biome">Lieu inconnu</div>
-      </div>
-
-      <div class="sv-bloc">
-        <div class="sv-titre">Communauté</div>
-        <div class="sv-inner">
-          <div class="sv-ligne"><span class="sv-nom">Moral</span><span class="sv-val" id="s-moral">80</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre" id="b-moral" style="width:80%"></div></div>
-          <div class="sv-ligne"><span class="sv-nom">Cohésion</span><span class="sv-val" id="s-cohesion">80</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre" id="b-cohesion" style="width:80%"></div></div>
-          <div class="sv-ligne"><span class="sv-nom">Influence joueur</span><span class="sv-val" id="s-influence">20</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre or" id="b-influence" style="width:20%"></div></div>
-        </div>
-      </div>
-
-      <div class="sv-bloc">
-        <div class="sv-titre">Réserves</div>
-        <div class="sv-inner">
-          <div class="sv-ligne"><span class="sv-nom">Eau (jours)</span><span class="sv-val" id="s-eau">0</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre ciel" id="b-eau" style="width:0%"></div></div>
-          <div class="sv-ligne"><span class="sv-nom">Nourriture (jours)</span><span class="sv-val" id="s-nourriture">0</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre terre" id="b-nourriture" style="width:0%"></div></div>
-        </div>
-      </div>
-
-      <div class="sv-bloc">
-        <div class="sv-titre">Joueur</div>
-        <div class="sv-inner">
-          <div class="sv-ligne"><span class="sv-nom">Santé</span><span class="sv-val" id="s-sante">100</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre" id="b-sante" style="width:100%"></div></div>
-          <div class="sv-ligne"><span class="sv-nom">Énergie</span><span class="sv-val" id="s-energie">100</span></div>
-          <div class="sv-barre-wrap"><div class="sv-barre" id="b-energie" style="width:100%"></div></div>
-        </div>
-      </div>
-
-      <div class="sv-bloc">
-        <div class="sv-titre">Ressources</div>
-        <div class="sv-inner" id="ressources-liste">
-          <div class="res-item">Bois <span id="r-bois">0</span></div>
-          <div class="res-item">Pierre/Silex <span id="r-pierre">0</span></div>
-          <div class="res-item">Fibres <span id="r-fibres">0</span></div>
-          <div class="res-item">Peaux <span id="r-peaux">0</span></div>
-          <div class="res-item">Médicaments <span id="r-meds">0</span></div>
-        </div>
-      </div>
-
-      <div class="sv-bloc">
-        <div class="sv-titre">Factions</div>
-        <div class="sv-inner">
-          <div id="factions-liste"><div class="faction-vide">Aucune faction</div></div>
-        </div>
-      </div>
-
-      <div class="sv-bloc" style="padding:10px 14px;">
-        <button class="btn-prem" onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'">
-          Premium — 7€/mois
-        </button>
-      </div>
-
+      <div id="c-pop" style="display:none;"></div><div id="c-biome" style="display:none;"></div>
+      <div id="s-moral" style="display:none;"></div><div id="b-moral" style="display:none;"></div>
+      <div id="s-cohesion" style="display:none;"></div><div id="b-cohesion" style="display:none;"></div>
+      <div id="s-influence" style="display:none;"></div><div id="b-influence" style="display:none;"></div>
+      <div id="s-eau" style="display:none;"></div><div id="b-eau" style="display:none;"></div>
+      <div id="s-nourriture" style="display:none;"></div><div id="b-nourriture" style="display:none;"></div>
+      <div id="s-sante" style="display:none;"></div><div id="b-sante" style="display:none;"></div>
+      <div id="s-energie" style="display:none;"></div><div id="b-energie" style="display:none;"></div>
+      <div id="r-bois" style="display:none;"></div><div id="r-pierre" style="display:none;"></div>
+      <div id="r-fibres" style="display:none;"></div><div id="r-peaux" style="display:none;"></div>
+      <div id="r-meds" style="display:none;"></div><div id="factions-liste" style="display:none;"></div>
     </div>
-
     <div class="jeu-panel">
       <div id="recit"></div>
       <div class="input-zone">
@@ -484,6 +307,13 @@ const G = {
 };
 const PAYWALL = 20;
 const SAISONS = ['Printemps','Été','Automne','Hiver'];
+
+function toggleSvPanel(){
+  const p=document.getElementById('sv-panel');
+  const b=document.querySelector('.sv-panel-btn');
+  p.classList.toggle('open');
+  if(b)b.textContent=p.classList.contains('open')?'Camp ▴':'Camp ▾';
+}
 
 function afficherSetup(){
   document.getElementById('ecran-intro').style.display='none';
@@ -632,6 +462,21 @@ function miseAJourUI(){
   const fEl=document.getElementById('factions-liste');
   if(G.factions.length){fEl.innerHTML=G.factions.map(f=>`<div class="faction-item" style="color:${f.hostile?'var(--rouge)':'var(--or)'};">⚑ ${f.nom} (${f.membres})</div>`).join('');}
   else{fEl.innerHTML='<div class="faction-vide">Aucune faction</div>';}
+  // Nouveau panneau déroulant
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const setW=(id,w,col)=>{const e=document.getElementById(id);if(e){e.style.width=Math.min(100,w)+'%';if(col)e.style.background=col;}};
+  set('svp-pop',G.comm.population||'?');
+  set('svp-biome',G.lieu);
+  set('svp-moral',c.moral);setW('svp-b-moral',c.moral,c.moral>50?'var(--vert-vif)':c.moral>25?'var(--or)':'var(--rouge)');
+  set('svp-cohesion',c.cohesion);setW('svp-b-cohesion',c.cohesion,c.cohesion>50?'var(--vert-vif)':c.cohesion>25?'var(--or)':'var(--rouge)');
+  set('svp-influence',c.influence);setW('svp-b-influence',Math.min(100,c.influence),'var(--or)');
+  set('svp-eau',r.eau);setW('svp-b-eau',Math.min(100,r.eau*20),r.eau>3?'var(--ciel)':r.eau>1?'var(--or)':'var(--rouge)');
+  set('svp-nourr',r.nourriture);setW('svp-b-nourr',Math.min(100,r.nourriture*10),r.nourriture>5?'var(--terre-vif)':r.nourriture>2?'var(--or)':'var(--rouge)');
+  set('svp-sante',j.sante);setW('svp-b-sante',j.sante,j.sante>60?'var(--vert-vif)':j.sante>30?'var(--or)':'var(--rouge)');
+  set('svp-energie',j.energie);setW('svp-b-energie',j.energie,j.energie>50?'var(--vert-vif)':'var(--or)');
+  set('svp-bois',res.bois);set('svp-pierre',res.pierre);set('svp-fibres',res.fibres);set('svp-peaux',res.peaux);set('svp-meds',res.meds);
+  const svpFac=document.getElementById('svp-factions');
+  if(svpFac)svpFac.innerHTML=G.factions.length?G.factions.map(f=>`<div class="sv-pr"><span class="sv-pk" style="color:${f.hostile?'var(--rouge)':'var(--or)'};">⚑ ${f.nom}</span><span class="sv-pv">${f.membres}</span></div>`).join(''):'<div style="font-size:10px;color:var(--texte-dim);font-style:italic;">Aucune faction</div>';
 }
 
 function construireSP(){
@@ -719,10 +564,8 @@ Quand nbChoix atteint ${PAYWALL} : inserer [ PAYWALL ]`.trim();
 function parserReponse(texte){
   const mises=[];
 
-  // Population
   texte=texte.replace(/\[\s*Pop\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.comm.population=parseInt(v);mises.push(`[Pop: ${v}]`);return '';});
 
-  // Stats communauté
   [['Moral','moral',G.comm],['Cohesion','cohesion',G.comm],['Influence','influence',G.comm]].forEach(([label,key,obj])=>{
     texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
       const n=parseInt(v);obj[key]=Math.max(0,Math.min(100,obj[key]+(op==='-'?-n:n)));
@@ -730,11 +573,9 @@ function parserReponse(texte){
     });
   });
 
-  // Réserves (valeurs absolues)
   texte=texte.replace(/\[\s*Eau\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.eau=parseInt(v);mises.push(`[Eau: ${v}j]`);return '';});
   texte=texte.replace(/\[\s*Nourriture\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.nourriture=parseInt(v);mises.push(`[Nourr: ${v}j]`);return '';});
 
-  // Joueur
   texte=texte.replace(/\[\s*Sant[ée]\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{
     const n=parseInt(v);G.joueur.sante=Math.max(0,Math.min(100,G.joueur.sante+(op==='-'?-n:n)));
     mises.push(`[Santé${op}${n}]`);
@@ -746,7 +587,6 @@ function parserReponse(texte){
     mises.push(`[Énergie${op}${n}]`);return '';
   });
 
-  // Ressources
   const resMap=[['Bois','bois'],['Pierre','pierre'],['Fibres','fibres'],['Peaux','peaux'],['Meds','meds']];
   resMap.forEach(([label,key])=>{
     texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
@@ -755,30 +595,25 @@ function parserReponse(texte){
     });
   });
 
-  // Temps
   texte=texte.replace(/\[\s*Jour\s*:\s*(\d+)\s*\]/gi,(_,n)=>{G.jour=parseInt(n);mises.push(`[Jour ${n}]`);return '';});
   texte=texte.replace(/\[\s*Saison\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{G.saison=s.trim();mises.push(`[${s.trim()}]`);return '';});
   texte=texte.replace(/\[\s*Lieu\s*:\s*([^\]]+)\s*\]/gi,(_,l)=>{G.lieu=l.trim();return '';});
 
-  // Scénario
   texte=texte.replace(/\[\s*SCENARIO\s*\]([\s\S]*?)(?=\[|\n\n|$)/i,(_,contenu)=>{
     const lignes=contenu.trim().split('\n').filter(l=>l.trim());
     if(lignes[0])G.lieu=lignes[0].replace(/^-\s*/,'').trim();
     return `<div class="evenement-bloc"><div class="evenement-header">Scénario généré</div><div class="evenement-texte">${lignes.map(l=>l.replace(/^-\s*/,'')).join('<br>')}</div></div>`;
   });
 
-  // Événement
   texte=texte.replace(/\[\s*EVENEMENT\s*:\s*([^\]]+)\s*\]/gi,(_,titre)=>{
     return `<div class="evenement-bloc"><div class="evenement-header">Événement — ${titre.trim()}</div></div>`;
   });
 
-  // Changement de saison
   texte=texte.replace(/\[\s*CHANGEMENT-SAISON\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{
     G.saison=s.trim();
     return `<div class="saison-bloc"><div class="saison-header">Changement de saison</div><div class="saison-texte">${s.trim()} — les conditions changent.</div></div>`;
   });
 
-  // Factions
   texte=texte.replace(/\[\s*FACTION\s*:\s*([^|]+)\s*\|\s*membres\s*:\s*(\d+)\s*\|\s*hostile\s*:\s*(oui|non)\s*\]/gi,(_,nom,membres,hostile)=>{
     const existing=G.factions.findIndex(f=>f.nom.toLowerCase()===nom.trim().toLowerCase());
     const fac={nom:nom.trim(),membres:parseInt(membres),hostile:hostile==='oui'};
@@ -786,29 +621,24 @@ function parserReponse(texte){
     mises.push(`[Faction: ${nom.trim()}]`);return '';
   });
 
-  // Mort
   texte=texte.replace(/\[\s*Mort\s*:\s*([^|]+)\s*\|\s*cause\s*:\s*([^\]]+)\s*\]/gi,(_,nom,cause)=>{
     if(G.comm.population>0)G.comm.population--;
     ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--rouge);"><div class="evenement-header" style="color:var(--rouge);">† ${nom.trim()}</div><div class="evenement-texte">${cause.trim()}</div></div>`);
     return '';
   });
 
-  // Naissance
   texte=texte.replace(/\[\s*Naissance\s*:\s*([^\]]+)\s*\]/gi,(_,prenom)=>{
     G.comm.population++;
     ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--vert-vif);"><div class="evenement-header" style="color:var(--vert-vif);">Naissance — ${prenom.trim()}</div><div class="evenement-texte">Un nouvel enfant vient de naître dans la communauté.</div></div>`);
     return '';
   });
 
-  // Fins
   if(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/gi,'');setTimeout(()=>declencherFin('sauvetage'),800);}
   if(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/gi,'');setTimeout(()=>declencherFin('etablissement'),800);}
   if(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/gi,'');setTimeout(()=>declencherFin('effondrement'),800);}
 
-  // Paywall
   if(!G.adminMode&&/\[\s*PAYWALL\s*\]/i.test(texte)){texte=texte.replace(/\[\s*PAYWALL\s*\]/gi,'');setTimeout(declencherPaywall,600);}
 
-  // Choix
   let htmlChoix='';
   const mChoix=texte.match(/\[\s*CHOIX\s*\]([\s\S]*?)(?=\n\n|\n\[|$)/i);
   if(mChoix){
