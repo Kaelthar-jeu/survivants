@@ -81,10 +81,10 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .rbn{background:var(--bg3);color:var(--texte-dim);border:1px solid var(--border2);}
 .rbn:hover{border-color:var(--vert-dim);color:var(--texte);}
 #app{display:flex;flex-direction:column;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 16px;position:relative;z-index:1;}
-header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 12px;border-bottom:2px solid var(--vert-dim);flex-shrink:0;}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 12px;border-bottom:2px solid var(--vert-dim);flex-shrink:0;position:sticky;top:0;background:var(--bg);z-index:50;}
 .logo{font-family:var(--titre);font-size:20px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
 .logo span{color:var(--vert-vif);}
-.header-droite{display:flex;align-items:center;gap:12px;}
+.header-droite{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .jour-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--texte-clair);background:var(--vert-dim);padding:3px 10px;}
 .saison-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--or);border:1px solid var(--or);padding:3px 8px;}
 .btn-mode-hdr{background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:9px;letter-spacing:2px;padding:4px 10px;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
