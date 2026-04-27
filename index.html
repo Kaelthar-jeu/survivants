@@ -25,6 +25,8 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .studio-bar{position:relative;z-index:10;background:#060806;border-bottom:2px solid var(--vert-dim);padding:6px 16px;text-align:center;}
 .studio-bar a{color:var(--texte-dim);font-size:11px;text-decoration:none;letter-spacing:3px;font-family:var(--mono);transition:color 0.2s;}
 .studio-bar a:hover{color:var(--vert-vif);}
+
+/* INTRO */
 #ecran-intro{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;}
 .intro-inner{max-width:560px;width:100%;text-align:left;position:relative;z-index:1;}
 .intro-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:24px;animation:app 0.7s ease 0.1s both;}
@@ -38,6 +40,8 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .btn-intro-s{display:none;background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:11px;letter-spacing:3px;padding:14px 24px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
 .btn-intro-s:hover{border-color:var(--vert-dim);color:var(--texte);}
 @keyframes app{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:translateX(0);}}
+
+/* SETUP */
 #ecran-setup{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;}
 .setup-wrap{max-width:620px;margin:auto;padding:40px 0;}
 .setup-entete{margin-bottom:36px;padding-bottom:16px;border-bottom:2px solid var(--vert-dim);}
@@ -45,9 +49,6 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .setup-titre{font-family:var(--titre);font-size:32px;font-weight:700;color:var(--texte-clair);letter-spacing:1px;text-transform:uppercase;}
 .setup-bloc{margin-bottom:28px;}
 .setup-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--texte-dim);display:block;margin-bottom:8px;}
-.setup-input{width:100%;background:var(--bg3);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--mono);font-size:14px;padding:10px 0;outline:none;transition:border-color 0.2s;border-radius:0;}
-.setup-input:focus{border-bottom-color:var(--vert-vif);}
-.setup-input::placeholder{color:var(--texte-dim);}
 .biome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
 .biome-carte{background:var(--bg3);border:2px solid var(--border);padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
 .biome-carte:hover{border-color:var(--border2);}
@@ -60,12 +61,10 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .mode-carte.sel{border-color:var(--vert-vif);background:rgba(58,106,24,0.08);}
 .mode-nom{font-family:var(--titre);font-size:13px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
 .mode-desc{font-family:var(--mono);font-size:9px;color:var(--texte-dim);margin-top:3px;}
-.checkbox-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;margin-top:8px;}
-.checkbox-wrap input{accent-color:var(--vert-vif);cursor:pointer;}
-.checkbox-label{font-family:var(--mono);font-size:10px;color:var(--texte-dim);letter-spacing:1px;}
 .btn-setup{width:100%;background:var(--vert);border:none;color:#fff;font-family:var(--titre);font-size:15px;font-weight:700;letter-spacing:4px;padding:16px;cursor:pointer;transition:background 0.2s;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));margin-top:8px;}
 .btn-setup:hover{background:var(--vert-vif);}
-.btn-setup:disabled{background:var(--border2);cursor:not-allowed;clip-path:none;}
+
+/* REPRISE */
 #ecran-reprise{display:none;position:fixed;inset:0;z-index:250;background:rgba(10,13,8,0.97);align-items:center;justify-content:center;padding:20px;}
 .reprise-box{background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--vert-vif);max-width:440px;width:100%;padding:36px;}
 .reprise-ref{font-family:var(--mono);font-size:9px;letter-spacing:4px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:6px;}
@@ -80,6 +79,8 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .rbp:hover{background:var(--vert-vif);}
 .rbn{background:var(--bg3);color:var(--texte-dim);border:1px solid var(--border2);}
 .rbn:hover{border-color:var(--vert-dim);color:var(--texte);}
+
+/* APP */
 #app{display:flex;flex-direction:column;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 16px;position:relative;z-index:1;}
 header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 12px;border-bottom:2px solid var(--vert-dim);flex-shrink:0;position:sticky;top:0;background:var(--bg);z-index:50;}
 .logo{font-family:var(--titre);font-size:20px;font-weight:700;color:var(--texte-clair);text-transform:uppercase;letter-spacing:1px;}
@@ -92,6 +93,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 .sauv{font-family:var(--mono);font-size:10px;color:var(--texte-dim);}
 .sauv.ok{color:var(--vert-vif);}
 .sauv.cours{color:var(--or);}
+
 /* Panneau déroulant */
 .sv-panel-btn{background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:9px;padding:4px 10px;cursor:pointer;transition:all 0.2s;letter-spacing:1px;text-transform:uppercase;}
 .sv-panel-btn:hover{border-color:var(--vert-vif);color:var(--vert-vif);}
@@ -105,6 +107,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 .sv-pb-wrap{background:var(--bg4);height:2px;margin-top:1px;margin-bottom:4px;overflow:hidden;border-radius:1px;}
 .sv-pb{height:100%;background:var(--vert-vif);transition:width 0.4s ease;}
 @media(max-width:700px){.sv-inner-panel{grid-template-columns:1fr 1fr;}}
+
 .main{display:block;flex:1;padding:14px 0;min-height:0;}
 .survie-panel{display:none;}
 .jeu-panel{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;z-index:5;}
@@ -173,11 +176,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 <div id="ecran-setup">
   <div class="setup-wrap">
     <div class="setup-entete"><div class="setup-ref">Configuration de la partie</div><div class="setup-titre">Survivants</div></div>
-    <div class="setup-bloc">
-      <label class="setup-label">Clé API Anthropic</label>
-      <input class="setup-input" type="password" id="api-key" placeholder="sk-ant-api03-..." autocomplete="off"/>
-      <label class="checkbox-wrap"><input type="checkbox" id="se-souvenir"/><span class="checkbox-label">Se souvenir sur cet appareil</span></label>
-    </div>
     <div class="setup-bloc">
       <label class="setup-label">Biome préféré — ou laisser l'IA choisir</label>
       <div class="biome-grid">
@@ -265,7 +263,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
       <div>
         <div class="sv-pt">Factions</div>
         <div id="svp-factions"><div class="faction-vide">Aucune faction</div></div>
-        <div style="margin-top:12px;"><button class="btn-prem" onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'">Premium — 7€/mois</button></div>
+        <div style="margin-top:12px;"><button class="btn-prem" onclick="afficherSaisieCode()">Premium — 7€/mois</button></div>
       </div>
     </div>
   </div>
@@ -296,7 +294,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 
 <script>
 const G = {
-  apiKey:'', biome:'aleatoire', mode:'boutons',
+  biome:'aleatoire', mode:'boutons',
   jour:1, saison:'Été', lieu:'Lieu inconnu',
   nbChoix:0, historique:[], saveTO:null, adminMode:false,
   factions:[],
@@ -306,68 +304,36 @@ const G = {
   joueur:{ sante:100, energie:100 }
 };
 const PAYWALL = 20;
-const SAISONS = ['Printemps','Été','Automne','Hiver'];
 
-function toggleSvPanel(){
-  const p=document.getElementById('sv-panel');
-  const b=document.querySelector('.sv-panel-btn');
-  p.classList.toggle('open');
-  if(b)b.textContent=p.classList.contains('open')?'Camp ▴':'Camp ▾';
-}
+function toggleSvPanel(){const p=document.getElementById('sv-panel');const b=document.querySelector('.sv-panel-btn');p.classList.toggle('open');if(b)b.textContent=p.classList.contains('open')?'Camp ▴':'Camp ▾';}
 
 function afficherSetup(){
   document.getElementById('ecran-intro').style.display='none';
   document.getElementById('ecran-setup').style.display='block';
-  const k=localStorage.getItem('surv_api_key');
-  if(k){document.getElementById('api-key').value=k;document.getElementById('se-souvenir').checked=true;}
 }
-function choisirBiome(b){
-  G.biome=b;
-  document.querySelectorAll('.biome-carte').forEach(c=>c.classList.remove('sel'));
-  document.getElementById('biome-'+b)?.classList.add('sel');
-}
+function choisirBiome(b){G.biome=b;document.querySelectorAll('.biome-carte').forEach(c=>c.classList.remove('sel'));document.getElementById('biome-'+b)?.classList.add('sel');}
 function choisirMode(m){
-  G.mode=m;
-  document.querySelectorAll('.mode-carte').forEach(c=>c.classList.remove('sel'));
-  document.getElementById('mode-'+m).classList.add('sel');
-  const inp=document.getElementById('input-joueur');
-  const btn=document.getElementById('btn-envoyer');
-  if(m==='boutons'){inp.style.display='none';btn.style.display='none';}
-  else{inp.style.display='flex';btn.style.display='flex';}
-  const sw=document.getElementById('btn-mode-switch');
-  if(sw)sw.textContent=m==='boutons'?'Boutons':'Texte libre';
+  G.mode=m;document.querySelectorAll('.mode-carte').forEach(c=>c.classList.remove('sel'));document.getElementById('mode-'+m).classList.add('sel');
+  const inp=document.getElementById('input-joueur');const btn=document.getElementById('btn-envoyer');
+  if(m==='boutons'){inp.style.display='none';btn.style.display='none';}else{inp.style.display='flex';btn.style.display='flex';}
+  const sw=document.getElementById('btn-mode-switch');if(sw)sw.textContent=m==='boutons'?'Boutons':'Texte libre';
 }
-function basculerMode(){
-  choisirMode(G.mode==='boutons'?'libre':'boutons');
-  autoSave();
-}
+function basculerMode(){choisirMode(G.mode==='boutons'?'libre':'boutons');autoSave();}
+
 function lancerJeu(){
-  const k=document.getElementById('api-key').value.trim();
-  if(!k){alert('Entre ta clé API.');return;}
-  G.apiKey=k;
-  if(document.getElementById('se-souvenir').checked)localStorage.setItem('surv_api_key',k);
   const save=charger();
   if(save&&save.historique&&save.historique.length>0){
-    fromSave(save);
-    document.getElementById('ecran-setup').style.display='none';
-    afficherReprise(save);return;
+    fromSave(save);document.getElementById('ecran-setup').style.display='none';afficherReprise(save);return;
   }
   document.getElementById('ecran-setup').style.display='none';
-  choisirMode(G.mode);
-  miseAJourUI();envoyerPremier();
+  choisirMode(G.mode);miseAJourUI();envoyerPremier();
 }
 function clicReprendre(){
-  const save=charger();
-  if(!save){afficherSetup();return;}
-  const k=localStorage.getItem('surv_api_key');
-  if(k)G.apiKey=k;
-  document.getElementById('ecran-intro').style.display='none';
-  afficherSetup();
+  const save=charger();if(!save){afficherSetup();return;}
+  document.getElementById('ecran-intro').style.display='none';afficherSetup();
 }
 function afficherReprise(save){
-  const d1=new Date(save.date),d2=new Date();
-  const h=Math.floor((d2-d1)/3600000),jr=Math.floor(h/24);
-  const abs=jr>0?`${jr}j`:h>0?`${h}h`:'Récent';
+  const d1=new Date(save.date),d2=new Date();const h=Math.floor((d2-d1)/3600000),jr=Math.floor(h/24);const abs=jr>0?`${jr}j`:h>0?`${h}h`:'Récent';
   document.getElementById('reprise-info').innerHTML=`
     <div class="reprise-ligne"><span class="reprise-cle">Jour</span><span class="reprise-val">${save.jour}</span></div>
     <div class="reprise-ligne"><span class="reprise-cle">Saison</span><span class="reprise-val">${save.saison}</span></div>
@@ -376,54 +342,18 @@ function afficherReprise(save){
     <div class="reprise-ligne"><span class="reprise-cle">Absent</span><span class="reprise-val">${abs}</span></div>`;
   document.getElementById('ecran-reprise').style.display='flex';
   document.getElementById('btn-continuer').onclick=()=>{
-    document.getElementById('ecran-reprise').style.display='none';
-    choisirMode(G.mode);miseAJourUI();
+    document.getElementById('ecran-reprise').style.display='none';choisirMode(G.mode);miseAJourUI();
     envoyerMessage(`Je reprends. Jour ${G.jour}, ${G.saison}, ${G.lieu}. ${G.comm.population} survivants. Eau : ${G.reserves.eau} jours. Nourriture : ${G.reserves.nourriture} jours. Moral : ${G.comm.moral}. Résume la situation et propose mes 4 options.`);
   };
-  document.getElementById('btn-nouvelle').onclick=()=>{
-    localStorage.removeItem('survivants_save');
-    reinitialiser();
-    document.getElementById('ecran-reprise').style.display='none';
-    choisirMode(G.mode);miseAJourUI();envoyerPremier();
-  };
+  document.getElementById('btn-nouvelle').onclick=()=>{localStorage.removeItem('survivants_save');reinitialiser();document.getElementById('ecran-reprise').style.display='none';choisirMode(G.mode);miseAJourUI();envoyerPremier();};
 }
 
-function sauvegarder(){
-  const d={biome:G.biome,mode:G.mode,jour:G.jour,saison:G.saison,lieu:G.lieu,
-    nbChoix:G.nbChoix,factions:G.factions,comm:G.comm,
-    reserves:G.reserves,ressources:G.ressources,joueur:G.joueur,
-    historique:G.historique.slice(-20),date:new Date().toISOString()};
-  localStorage.setItem('survivants_save',JSON.stringify(d));
-}
-function charger(){
-  const d=localStorage.getItem('survivants_save');
-  if(!d)return null;try{return JSON.parse(d);}catch(e){return null;}
-}
-function fromSave(s){
-  Object.assign(G,{biome:s.biome||'aleatoire',mode:s.mode||'boutons',
-    jour:s.jour||1,saison:s.saison||'Été',lieu:s.lieu||'Lieu inconnu',
-    nbChoix:s.nbChoix||0,factions:s.factions||[],historique:s.historique||[]});
-  if(s.comm)Object.assign(G.comm,s.comm);
-  if(s.reserves)Object.assign(G.reserves,s.reserves);
-  if(s.ressources)Object.assign(G.ressources,s.ressources);
-  if(s.joueur)Object.assign(G.joueur,s.joueur);
-}
-function reinitialiser(){
-  G.jour=1;G.saison='Été';G.lieu='Lieu inconnu';G.nbChoix=0;G.factions=[];G.historique=[];
-  G.comm={population:0,moral:80,cohesion:80,influence:20};
-  G.reserves={eau:0,nourriture:0};
-  G.ressources={bois:0,pierre:0,fibres:0,peaux:0,meds:0};
-  G.joueur={sante:100,energie:100};
-}
-function autoSave(){
-  if(G.saveTO)clearTimeout(G.saveTO);
-  setSI('cours');G.saveTO=setTimeout(()=>{sauvegarder();setSI('ok');setTimeout(()=>setSI(''),2000);},500);
-}
-function setSI(e){
-  const el=document.getElementById('sauv-ind');
-  el.className='sauv'+(e?' '+e:'');
-  el.textContent=e==='cours'?'↑ sauvegarde...':e==='ok'?'✓ sauvegardé':'● prêt';
-}
+function sauvegarder(){const d={biome:G.biome,mode:G.mode,jour:G.jour,saison:G.saison,lieu:G.lieu,nbChoix:G.nbChoix,factions:G.factions,comm:G.comm,reserves:G.reserves,ressources:G.ressources,joueur:G.joueur,historique:G.historique.slice(-20),date:new Date().toISOString()};localStorage.setItem('survivants_save',JSON.stringify(d));}
+function charger(){const d=localStorage.getItem('survivants_save');if(!d)return null;try{return JSON.parse(d);}catch(e){return null;}}
+function fromSave(s){Object.assign(G,{biome:s.biome||'aleatoire',mode:s.mode||'boutons',jour:s.jour||1,saison:s.saison||'Été',lieu:s.lieu||'Lieu inconnu',nbChoix:s.nbChoix||0,factions:s.factions||[],historique:s.historique||[]});if(s.comm)Object.assign(G.comm,s.comm);if(s.reserves)Object.assign(G.reserves,s.reserves);if(s.ressources)Object.assign(G.ressources,s.ressources);if(s.joueur)Object.assign(G.joueur,s.joueur);}
+function reinitialiser(){G.jour=1;G.saison='Été';G.lieu='Lieu inconnu';G.nbChoix=0;G.factions=[];G.historique=[];G.comm={population:0,moral:80,cohesion:80,influence:20};G.reserves={eau:0,nourriture:0};G.ressources={bois:0,pierre:0,fibres:0,peaux:0,meds:0};G.joueur={sante:100,energie:100};}
+function autoSave(){if(G.saveTO)clearTimeout(G.saveTO);setSI('cours');G.saveTO=setTimeout(()=>{sauvegarder();setSI('ok');setTimeout(()=>setSI(''),2000);},500);}
+function setSI(e){const el=document.getElementById('sauv-ind');el.className='sauv'+(e?' '+e:'');el.textContent=e==='cours'?'↑ sauvegarde...':e==='ok'?'✓ sauvegardé':'● prêt';}
 
 function miseAJourUI(){
   document.getElementById('jour-tag').textContent='Jour '+G.jour;
@@ -431,42 +361,24 @@ function miseAJourUI(){
   document.getElementById('c-pop').textContent=G.comm.population||'?';
   document.getElementById('c-biome').textContent=G.lieu;
   const c=G.comm;
-  document.getElementById('s-moral').textContent=c.moral;
-  document.getElementById('b-moral').style.width=c.moral+'%';
+  ['moral','cohesion','influence'].forEach(k=>{
+    document.getElementById('s-'+k).textContent=c[k];
+    document.getElementById('b-'+k).style.width=Math.min(100,c[k])+'%';
+  });
   document.getElementById('b-moral').style.background=c.moral>50?'var(--vert-vif)':c.moral>25?'var(--or)':'var(--rouge)';
-  document.getElementById('s-cohesion').textContent=c.cohesion;
-  document.getElementById('b-cohesion').style.width=c.cohesion+'%';
   document.getElementById('b-cohesion').style.background=c.cohesion>50?'var(--vert-vif)':c.cohesion>25?'var(--or)':'var(--rouge)';
-  document.getElementById('s-influence').textContent=c.influence;
-  document.getElementById('b-influence').style.width=Math.min(100,c.influence)+'%';
   const r=G.reserves;
-  document.getElementById('s-eau').textContent=r.eau;
-  document.getElementById('b-eau').style.width=Math.min(100,r.eau*20)+'%';
-  document.getElementById('b-eau').style.background=r.eau>3?'var(--ciel)':r.eau>1?'var(--or)':'var(--rouge)';
-  document.getElementById('s-nourriture').textContent=r.nourriture;
-  document.getElementById('b-nourriture').style.width=Math.min(100,r.nourriture*10)+'%';
-  document.getElementById('b-nourriture').style.background=r.nourriture>5?'var(--terre-vif)':r.nourriture>2?'var(--or)':'var(--rouge)';
+  document.getElementById('s-eau').textContent=r.eau;document.getElementById('b-eau').style.width=Math.min(100,r.eau*20)+'%';document.getElementById('b-eau').style.background=r.eau>3?'var(--ciel)':r.eau>1?'var(--or)':'var(--rouge)';
+  document.getElementById('s-nourriture').textContent=r.nourriture;document.getElementById('b-nourriture').style.width=Math.min(100,r.nourriture*10)+'%';document.getElementById('b-nourriture').style.background=r.nourriture>5?'var(--terre-vif)':r.nourriture>2?'var(--or)':'var(--rouge)';
   const j=G.joueur;
-  document.getElementById('s-sante').textContent=j.sante;
-  document.getElementById('b-sante').style.width=j.sante+'%';
-  document.getElementById('b-sante').style.background=j.sante>60?'var(--vert-vif)':j.sante>30?'var(--or)':'var(--rouge)';
-  document.getElementById('s-energie').textContent=j.energie;
-  document.getElementById('b-energie').style.width=j.energie+'%';
-  document.getElementById('b-energie').style.background=j.energie>50?'var(--vert-vif)':'var(--or)';
+  document.getElementById('s-sante').textContent=j.sante;document.getElementById('b-sante').style.width=j.sante+'%';document.getElementById('b-sante').style.background=j.sante>60?'var(--vert-vif)':j.sante>30?'var(--or)':'var(--rouge)';
+  document.getElementById('s-energie').textContent=j.energie;document.getElementById('b-energie').style.width=j.energie+'%';document.getElementById('b-energie').style.background=j.energie>50?'var(--vert-vif)':'var(--or)';
   const res=G.ressources;
-  document.getElementById('r-bois').textContent=res.bois;
-  document.getElementById('r-pierre').textContent=res.pierre;
-  document.getElementById('r-fibres').textContent=res.fibres;
-  document.getElementById('r-peaux').textContent=res.peaux;
-  document.getElementById('r-meds').textContent=res.meds;
-  const fEl=document.getElementById('factions-liste');
-  if(G.factions.length){fEl.innerHTML=G.factions.map(f=>`<div class="faction-item" style="color:${f.hostile?'var(--rouge)':'var(--or)'};">⚑ ${f.nom} (${f.membres})</div>`).join('');}
-  else{fEl.innerHTML='<div class="faction-vide">Aucune faction</div>';}
-  // Nouveau panneau déroulant
+  ['bois','pierre','fibres','peaux','meds'].forEach(k=>document.getElementById('r-'+k).textContent=res[k]);
+  // Panneau déroulant
   const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   const setW=(id,w,col)=>{const e=document.getElementById(id);if(e){e.style.width=Math.min(100,w)+'%';if(col)e.style.background=col;}};
-  set('svp-pop',G.comm.population||'?');
-  set('svp-biome',G.lieu);
+  set('svp-pop',G.comm.population||'?');set('svp-biome',G.lieu);
   set('svp-moral',c.moral);setW('svp-b-moral',c.moral,c.moral>50?'var(--vert-vif)':c.moral>25?'var(--or)':'var(--rouge)');
   set('svp-cohesion',c.cohesion);setW('svp-b-cohesion',c.cohesion,c.cohesion>50?'var(--vert-vif)':c.cohesion>25?'var(--or)':'var(--rouge)');
   set('svp-influence',c.influence);setW('svp-b-influence',Math.min(100,c.influence),'var(--or)');
@@ -486,226 +398,136 @@ function construireSP(){
 Tu es le Conteur de Survivants. Tu es un auteur, pas un assistant. TOUJOURS en français. Deuxième personne pour le joueur.
 
 === VOIX LITTERAIRE ===
-CORMAC McCARTHY pour la prose : seche, dense, sans concession. La faim fait vraiment mal. Le froid tue vraiment. Pas d'ornements.
-WILLIAM GOLDING pour les dynamiques sociales : les factions emergent logiquement des tensions. Les humains sous pression revelent ce qu'ils sont vraiment.
-JEAN AUEL pour la survie technique : rigueur et coherence. On ne fabrique pas un arc sans d'abord avoir un couteau. Les ressources du biome sont respectees.
-
-REGLES D'ECRITURE :
-- Phrases courtes et denses. Details sensoriels concrets.
-- Mots INTERDITS : soudain, immediatement, incroyable, impressionnant.
-- La faim, le froid, la fatigue sont decrits avec precision.
-- Jamais deux evenements identiques sur toute la partie.
+Cormac McCarthy pour la prose : sèche, dense, sans concession. La faim fait vraiment mal.
+William Golding pour les dynamiques sociales : les factions émergent logiquement des tensions.
+Jean Auel pour la survie technique : rigueur et cohérence. Progression logique des outils.
+Mots INTERDITS : soudain, immédiatement, incroyable, impressionnant.
 
 === SCENARIO ===
-Au PREMIER MESSAGE : generer aleatoirement et annoncer avec [ SCENARIO ] :
-- Biome exact (si preference : ${biomeDesc})
-- Nombre de survivants (4 a 12) avec profils individuels nommes
-- Saison initiale et conditions meteo
-- Materiel recupere du crash
-- Etat de sante initial des blesses
+Au PREMIER MESSAGE : générer aléatoirement avec [ SCENARIO ] :
+- Biome exact (si préférence : ${biomeDesc})
+- Nombre de survivants (4 à 12) avec profils individuels nommés
+- Saison initiale et conditions météo
+- Matériel récupéré du crash
+- État de santé initial des blessés
 
-=== ETAT ACTUEL ===
+=== ÉTAT ACTUEL ===
 Jour : ${G.jour} | Saison : ${G.saison} | Lieu : ${G.lieu}
 Population : ${c.population} survivants
-Moral : ${c.moral}/100 | Cohesion : ${c.cohesion}/100 | Influence joueur : ${c.influence}/100
-Eau : ${r.eau} jours de reserves | Nourriture : ${r.nourriture} jours
-Joueur — Sante : ${j.sante}/100 | Energie : ${j.energie}/100
+Moral : ${c.moral}/100 | Cohésion : ${c.cohesion}/100 | Influence joueur : ${c.influence}/100
+Eau : ${r.eau} jours | Nourriture : ${r.nourriture} jours
+Joueur — Santé : ${j.sante}/100 | Énergie : ${j.energie}/100
 Ressources : Bois ${res.bois} | Pierre ${res.pierre} | Fibres ${res.fibres} | Peaux ${res.peaux} | Meds ${res.meds}
 Factions : ${G.factions.length?G.factions.map(f=>f.nom+'('+f.membres+')').join(', '):'Aucune'}
 
-=== MECANIQUES CLES ===
-TEMPS : chaque scene = une periode (quelques heures a une journee). Indiquer [ Jour: X ] apres chaque avancee significative.
-SAISONS : changement avec [ Saison: NomSaison ]. Hiver = danger existentiel si mal prepare.
-EVENEMENTS : chaque semaine (tous les 7 jours environ), introduire un evenement NOUVEAU jamais vu. Maintenir une memoire interne de tout ce qui s'est passe.
-FABRICATION : progression logique — niveau 1 (couteau/lance) avant niveau 2 (arc/hache), etc. Ne pas bruler les etapes.
-FACTIONS : emergent des tensions reelles, pas aleatoirement. Signaler avec [ FACTION: NomFaction | membres: X | hostile: oui/non ]
-REPRODUCTION : possible apres plusieurs mois de stabilite. Signaler avec [ Naissance: prenom ]
-MORT : permanente. Signaler avec [ Mort: NomPersonnage | cause ]
+=== MÉCANIQUES ===
+TEMPS : [ Jour: X ] après chaque avancée. SAISONS : [ Saison: NomSaison ]. Hiver = danger existentiel.
+FABRICATION : progression logique (niveau 1 avant niveau 2).
+FACTIONS : [ FACTION: NomFaction | membres: X | hostile: oui/non ]
+MORTS : [ Mort: NomPersonnage | cause: raison ] | NAISSANCES : [ Naissance: prenom ]
 
-=== REGLES ABSOLUES ===
-1. L'IA NE PROTEGE JAMAIS la communaute.
-2. Une famine non preparee tue. Un hiver ignore tue.
-3. Les morts sont permanentes et irreversibles.
-4. Les survivants ont une memoire — ils se souviennent des decisions passees.
-5. JAMAIS deux evenements identiques.
-6. Les ressources sont finies et se regenerent a un rythme realiste.
+=== RÈGLES ABSOLUES ===
+1. L'IA ne protège jamais la communauté. 2. Famine non préparée = morts. 3. Morts permanentes. 4. Survivants mémorisent les décisions. 5. Jamais deux événements identiques.
 
 === FORMAT ===
-Narration (120-200 mots, style McCarthy)
-
+Narration (120-200 mots)
 [ Stats si pertinent ]
-
 ${G.mode==='boutons'?`[ CHOIX ]
 1 — option
 2 — option
 3 — option
 4 — option`:'Question ouverte sur l\'action du joueur.'}
 
-=== MISES A JOUR STATS ===
+=== MISES À JOUR ===
 [ Pop: X ] [ Moral ±X ] [ Cohesion ±X ] [ Influence ±X ]
-[ Eau: X ] [ Nourriture: X ] (valeurs absolues en jours de reserves)
+[ Eau: X ] [ Nourriture: X ] (valeurs absolues en jours)
 [ Sante ±X ] [ Energie ±X ]
 [ Bois ±X ] [ Pierre ±X ] [ Fibres ±X ] [ Peaux ±X ] [ Meds ±X ]
 [ Jour: X ] [ Saison: NomSaison ] [ Lieu: description ]
-[ FACTION: nom | membres: X | hostile: oui/non ]
-[ Mort: NomPersonnage | cause ]
-[ Naissance: prenom ]
-[ EVENEMENT: titre court ]
-
-=== FINS OPTIONNELLES ===
-[ FIN: SAUVETAGE ] — equipe de secours retrouve la communaute
-[ FIN: ETABLISSEMENT ] — communaute stable, seuil de civilisation atteint
-[ FIN: EFFONDREMENT ] — communaute disparait
+[ FIN: SAUVETAGE ] | [ FIN: ETABLISSEMENT ] | [ FIN: EFFONDREMENT ]
 
 === PAYWALL ===
-Quand nbChoix atteint ${PAYWALL} : inserer [ PAYWALL ]`.trim();
+Quand nbChoix atteint ${PAYWALL} : insérer [ PAYWALL ]`.trim();
 }
 
 function parserReponse(texte){
   const mises=[];
-
   texte=texte.replace(/\[\s*Pop\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.comm.population=parseInt(v);mises.push(`[Pop: ${v}]`);return '';});
-
   [['Moral','moral',G.comm],['Cohesion','cohesion',G.comm],['Influence','influence',G.comm]].forEach(([label,key,obj])=>{
-    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
-      const n=parseInt(v);obj[key]=Math.max(0,Math.min(100,obj[key]+(op==='-'?-n:n)));
-      mises.push(`[${label}${op}${n}]`);return '';
-    });
+    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{const n=parseInt(v);obj[key]=Math.max(0,Math.min(100,obj[key]+(op==='-'?-n:n)));mises.push(`[${label}${op}${n}]`);return '';});
   });
-
   texte=texte.replace(/\[\s*Eau\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.eau=parseInt(v);mises.push(`[Eau: ${v}j]`);return '';});
   texte=texte.replace(/\[\s*Nourriture\s*:\s*(\d+)\s*\]/gi,(_,v)=>{G.reserves.nourriture=parseInt(v);mises.push(`[Nourr: ${v}j]`);return '';});
-
-  texte=texte.replace(/\[\s*Sant[ée]\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{
-    const n=parseInt(v);G.joueur.sante=Math.max(0,Math.min(100,G.joueur.sante+(op==='-'?-n:n)));
-    mises.push(`[Santé${op}${n}]`);
-    if(G.joueur.sante<=0)setTimeout(()=>declencherFin('effondrement'),500);
-    return '';
+  texte=texte.replace(/\[\s*Sant[ée]\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{const n=parseInt(v);G.joueur.sante=Math.max(0,Math.min(100,G.joueur.sante+(op==='-'?-n:n)));mises.push(`[Santé${op}${n}]`);if(G.joueur.sante<=0)setTimeout(()=>declencherFin('effondrement'),500);return '';});
+  texte=texte.replace(/\[\s*[EÉ]nergie\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{const n=parseInt(v);G.joueur.energie=Math.max(0,Math.min(100,G.joueur.energie+(op==='-'?-n:n)));mises.push(`[Énergie${op}${n}]`);return '';});
+  [['Bois','bois'],['Pierre','pierre'],['Fibres','fibres'],['Peaux','peaux'],['Meds','meds']].forEach(([label,key])=>{
+    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{const n=parseInt(v);G.ressources[key]=Math.max(0,G.ressources[key]+(op==='-'?-n:n));mises.push(`[${label}${op}${n}]`);return '';});
   });
-  texte=texte.replace(/\[\s*[EÉ]nergie\s*([+\-])(\d+)\s*\]/gi,(_,op,v)=>{
-    const n=parseInt(v);G.joueur.energie=Math.max(0,Math.min(100,G.joueur.energie+(op==='-'?-n:n)));
-    mises.push(`[Énergie${op}${n}]`);return '';
-  });
-
-  const resMap=[['Bois','bois'],['Pierre','pierre'],['Fibres','fibres'],['Peaux','peaux'],['Meds','meds']];
-  resMap.forEach(([label,key])=>{
-    texte=texte.replace(new RegExp(`\\[\\s*${label}\\s*([+\\-])(\\d+)\\s*\\]`,'gi'),(_,op,v)=>{
-      const n=parseInt(v);G.ressources[key]=Math.max(0,G.ressources[key]+(op==='-'?-n:n));
-      mises.push(`[${label}${op}${n}]`);return '';
-    });
-  });
-
   texte=texte.replace(/\[\s*Jour\s*:\s*(\d+)\s*\]/gi,(_,n)=>{G.jour=parseInt(n);mises.push(`[Jour ${n}]`);return '';});
   texte=texte.replace(/\[\s*Saison\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{G.saison=s.trim();mises.push(`[${s.trim()}]`);return '';});
   texte=texte.replace(/\[\s*Lieu\s*:\s*([^\]]+)\s*\]/gi,(_,l)=>{G.lieu=l.trim();return '';});
-
-  texte=texte.replace(/\[\s*SCENARIO\s*\]([\s\S]*?)(?=\[|\n\n|$)/i,(_,contenu)=>{
-    const lignes=contenu.trim().split('\n').filter(l=>l.trim());
-    if(lignes[0])G.lieu=lignes[0].replace(/^-\s*/,'').trim();
-    return `<div class="evenement-bloc"><div class="evenement-header">Scénario généré</div><div class="evenement-texte">${lignes.map(l=>l.replace(/^-\s*/,'')).join('<br>')}</div></div>`;
-  });
-
-  texte=texte.replace(/\[\s*EVENEMENT\s*:\s*([^\]]+)\s*\]/gi,(_,titre)=>{
-    return `<div class="evenement-bloc"><div class="evenement-header">Événement — ${titre.trim()}</div></div>`;
-  });
-
-  texte=texte.replace(/\[\s*CHANGEMENT-SAISON\s*:\s*([^\]]+)\s*\]/gi,(_,s)=>{
-    G.saison=s.trim();
-    return `<div class="saison-bloc"><div class="saison-header">Changement de saison</div><div class="saison-texte">${s.trim()} — les conditions changent.</div></div>`;
-  });
-
-  texte=texte.replace(/\[\s*FACTION\s*:\s*([^|]+)\s*\|\s*membres\s*:\s*(\d+)\s*\|\s*hostile\s*:\s*(oui|non)\s*\]/gi,(_,nom,membres,hostile)=>{
-    const existing=G.factions.findIndex(f=>f.nom.toLowerCase()===nom.trim().toLowerCase());
-    const fac={nom:nom.trim(),membres:parseInt(membres),hostile:hostile==='oui'};
-    if(existing>=0)G.factions[existing]=fac;else G.factions.push(fac);
-    mises.push(`[Faction: ${nom.trim()}]`);return '';
-  });
-
-  texte=texte.replace(/\[\s*Mort\s*:\s*([^|]+)\s*\|\s*cause\s*:\s*([^\]]+)\s*\]/gi,(_,nom,cause)=>{
-    if(G.comm.population>0)G.comm.population--;
-    ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--rouge);"><div class="evenement-header" style="color:var(--rouge);">† ${nom.trim()}</div><div class="evenement-texte">${cause.trim()}</div></div>`);
-    return '';
-  });
-
-  texte=texte.replace(/\[\s*Naissance\s*:\s*([^\]]+)\s*\]/gi,(_,prenom)=>{
-    G.comm.population++;
-    ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--vert-vif);"><div class="evenement-header" style="color:var(--vert-vif);">Naissance — ${prenom.trim()}</div><div class="evenement-texte">Un nouvel enfant vient de naître dans la communauté.</div></div>`);
-    return '';
-  });
-
+  texte=texte.replace(/\[\s*SCENARIO\s*\]([\s\S]*?)(?=\[|\n\n|$)/i,(_,contenu)=>{const lignes=contenu.trim().split('\n').filter(l=>l.trim());if(lignes[0])G.lieu=lignes[0].replace(/^-\s*/,'').trim();return `<div class="evenement-bloc"><div class="evenement-header">Scénario généré</div><div class="evenement-texte">${lignes.map(l=>l.replace(/^-\s*/,'')).join('<br>')}</div></div>`;});
+  texte=texte.replace(/\[\s*EVENEMENT\s*:\s*([^\]]+)\s*\]/gi,(_,titre)=>`<div class="evenement-bloc"><div class="evenement-header">Événement — ${titre.trim()}</div></div>`);
+  texte=texte.replace(/\[\s*FACTION\s*:\s*([^|]+)\s*\|\s*membres\s*:\s*(\d+)\s*\|\s*hostile\s*:\s*(oui|non)\s*\]/gi,(_,nom,membres,hostile)=>{const existing=G.factions.findIndex(f=>f.nom.toLowerCase()===nom.trim().toLowerCase());const fac={nom:nom.trim(),membres:parseInt(membres),hostile:hostile==='oui'};if(existing>=0)G.factions[existing]=fac;else G.factions.push(fac);mises.push(`[Faction: ${nom.trim()}]`);return '';});
+  texte=texte.replace(/\[\s*Mort\s*:\s*([^|]+)\s*\|\s*cause\s*:\s*([^\]]+)\s*\]/gi,(_,nom,cause)=>{if(G.comm.population>0)G.comm.population--;ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--rouge);"><div class="evenement-header" style="color:var(--rouge);">† ${nom.trim()}</div><div class="evenement-texte">${cause.trim()}</div></div>`);return '';});
+  texte=texte.replace(/\[\s*Naissance\s*:\s*([^\]]+)\s*\]/gi,(_,prenom)=>{G.comm.population++;ajouterRecit(`<div class="evenement-bloc" style="border-left-color:var(--vert-vif);"><div class="evenement-header" style="color:var(--vert-vif);">Naissance — ${prenom.trim()}</div><div class="evenement-texte">Un nouvel enfant vient de naître dans la communauté.</div></div>`);return '';});
   if(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*SAUVETAGE\s*\]/gi,'');setTimeout(()=>declencherFin('sauvetage'),800);}
   if(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*ETABLISSEMENT\s*\]/gi,'');setTimeout(()=>declencherFin('etablissement'),800);}
   if(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/i.test(texte)){texte=texte.replace(/\[\s*FIN\s*:\s*EFFONDREMENT\s*\]/gi,'');setTimeout(()=>declencherFin('effondrement'),800);}
-
   if(!G.adminMode&&/\[\s*PAYWALL\s*\]/i.test(texte)){texte=texte.replace(/\[\s*PAYWALL\s*\]/gi,'');setTimeout(declencherPaywall,600);}
-
   let htmlChoix='';
   const mChoix=texte.match(/\[\s*CHOIX\s*\]([\s\S]*?)(?=\n\n|\n\[|$)/i);
-  if(mChoix){
-    texte=texte.replace(mChoix[0],'').trim();
-    const lignes=mChoix[0].split('\n').filter(l=>/^\d[\s—\-]/.test(l.trim()));
-    if(lignes.length){
-      window._choix=lignes.map(l=>l.replace(/^\d\s*[—\-]\s*/,'').trim());
-      htmlChoix='<div class="choix-bloc"><div class="choix-titre">Que fais-tu ?</div>'+
-        window._choix.map((t,i)=>`<button class="choix-btn" onclick="envoyerChoix(${i})">${lignes[i].trim()}</button>`).join('')+'</div>';
-    }
-  }
-
+  if(mChoix){texte=texte.replace(mChoix[0],'').trim();const lignes=mChoix[0].split('\n').filter(l=>/^\d[\s—\-]/.test(l.trim()));if(lignes.length){window._choix=lignes.map(l=>l.replace(/^\d\s*[—\-]\s*/,'').trim());htmlChoix='<div class="choix-bloc"><div class="choix-titre">Que fais-tu ?</div>'+window._choix.map((t,i)=>`<button class="choix-btn" onclick="envoyerChoix(${i})">${lignes[i].trim()}</button>`).join('')+'</div>';}}
   miseAJourUI();
-  const ps=texte.trim().split(/\n+/).filter(l=>l.trim()).map(l=>{
-    if(l.startsWith('<'))return l;
-    return `<p>${l.trim()}</p>`;
-  }).join('');
+  const ps=texte.trim().split(/\n+/).filter(l=>l.trim()).map(l=>{if(l.startsWith('<'))return l;return `<p>${l.trim()}</p>`;}).join('');
   const su=mises.length?`<div class="maj-stats">${mises.join('  ')}</div>`:'';
   return ps+su+htmlChoix;
 }
 
 function declencherFin(type){
   const fins={
-    sauvetage:{titre:'Sauvetage',texte:'Une equipe de secours vous a retrouves. Vous etes vivants. Certains ne voulaient plus partir.',color:'var(--vert-vif)'},
-    etablissement:{titre:'Etablissement',texte:'Ce n\'est plus un camp de survie. C\'est une communaute. Quelque chose a change ce jour-la, imperceptiblement. Vous avez survécu. Et vous avez construit quelque chose.',color:'var(--or)'},
-    effondrement:{titre:'Effondrement',texte:'La communaute a disparu. Pas en un jour. En une serie de mauvaises decisions, de mauvaises saisons, de mauvaises chances. C\'est ainsi que les civilisations finissent.',color:'var(--rouge)'}
+    sauvetage:{titre:'Sauvetage',texte:'Une équipe de secours vous a retrouvés. Vous êtes vivants. Certains ne voulaient plus partir.',color:'var(--vert-vif)'},
+    etablissement:{titre:'Établissement',texte:'Ce n\'est plus un camp de survie. C\'est une communauté. Vous avez survécu. Et vous avez construit quelque chose.',color:'var(--or)'},
+    effondrement:{titre:'Effondrement',texte:'La communauté a disparu. Pas en un jour. En une série de mauvaises décisions, de mauvaises saisons, de mauvaises chances.',color:'var(--rouge)'}
   };
   const fin=fins[type];
-  ajouterRecit(`<div style="border:2px solid ${fin.color};padding:24px;margin:12px 0;">
-    <div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-bottom:8px;">— Fin —</div>
-    <div style="font-family:var(--titre);font-size:24px;font-weight:700;color:${fin.color};text-transform:uppercase;margin-bottom:12px;letter-spacing:1px;">${fin.titre}</div>
-    <div style="font-family:var(--corps);font-size:14px;font-style:italic;color:var(--texte);line-height:1.8;">${fin.texte}</div>
-    <button onclick="nouvellePartie()" style="margin-top:16px;background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:10px 24px;cursor:pointer;text-transform:uppercase;">Nouvelle partie</button>
-  </div>`);
+  ajouterRecit(`<div style="border:2px solid ${fin.color};padding:24px;margin:12px 0;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--texte-dim);text-transform:uppercase;margin-bottom:8px;">— Fin —</div><div style="font-family:var(--titre);font-size:24px;font-weight:700;color:${fin.color};text-transform:uppercase;margin-bottom:12px;letter-spacing:1px;">${fin.titre}</div><div style="font-family:var(--corps);font-size:14px;font-style:italic;color:var(--texte);line-height:1.8;">${fin.texte}</div><button onclick="nouvellePartie()" style="margin-top:16px;background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:10px 24px;cursor:pointer;text-transform:uppercase;">Nouvelle partie</button></div>`);
 }
-function nouvellePartie(){
-  localStorage.removeItem('survivants_save');
-  reinitialiser();
-  document.getElementById('recit').innerHTML='';
-  afficherSetup();
-}
+function nouvellePartie(){localStorage.removeItem('survivants_save');reinitialiser();document.getElementById('recit').innerHTML='';afficherSetup();}
+
 function declencherPaywall(){
   ajouterRecit(`<div style="border:2px solid var(--vert-dim);background:rgba(58,106,24,0.06);padding:20px;margin:8px 0;text-align:center;">
     <p style="font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--vert-vif);text-transform:uppercase;margin-bottom:10px;">— Accès limité —</p>
     <p style="font-family:var(--corps);font-size:14px;color:var(--texte-clair);margin-bottom:16px;">Tu as atteint la limite gratuite. Pour continuer à construire ta communauté jusqu'à la fin, passe à l'abonnement Récit Games.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button onclick="window.location.href='https://buy.stripe.com/test_8x2bJ05fU1yV3uKde1bZe00'" style="background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 24px;cursor:pointer;text-transform:uppercase;">S'abonner — 7€/mois</button>
-      <button onclick="saisirCode()" style="background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 20px;cursor:pointer;text-transform:uppercase;">J'ai un code</button>
+      <button onclick="window.location.href='https://buy.stripe.com/dRmdR90q9fKv8ku2jq04801'" style="background:var(--vert);border:none;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 24px;cursor:pointer;text-transform:uppercase;">S'abonner — 7€/mois</button>
+      <button onclick="afficherSaisieCode()" style="background:none;border:1px solid var(--border2);color:var(--texte-dim);font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:11px 20px;cursor:pointer;text-transform:uppercase;">J'ai un code</button>
     </div>
   </div>`);
-  document.getElementById('btn-envoyer').disabled=true;
-  document.getElementById('input-joueur').disabled=true;
-}
-function saisirCode(){
-  const code=prompt('Entre ton code abonnement Récit Games :');
-  if(!code)return;
-  fetch('https://recitgames-api.vercel.app/api/verify-code',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({code:code.trim().toUpperCase()})
-  }).then(r=>r.json()).then(data=>{
-    if(data.valid){
-      if(data.admin){G.nbChoix=0;G.adminMode=true;ajouterRecit('<p style="color:var(--vert-vif);font-family:var(--mono);font-size:11px;letter-spacing:2px;">✓ Accès admin activé.</p>');}
-      else{G.nbChoix=0;document.getElementById('btn-envoyer').disabled=false;document.getElementById('input-joueur').disabled=false;ajouterRecit('<p style="color:var(--vert-vif);font-family:var(--mono);font-size:11px;letter-spacing:2px;">✓ Code validé. La survie continue.</p>');}
-    }else{alert('Code invalide.');}
-  }).catch(()=>alert('Erreur de vérification.'));
+  document.getElementById('btn-envoyer').disabled=true;document.getElementById('input-joueur').disabled=true;
 }
 
+function afficherSaisieCode(){
+  const overlay=document.createElement('div');overlay.id='code-overlay';
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;';
+  overlay.innerHTML=`<div style="background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--vert-vif);padding:36px 32px;max-width:400px;width:100%;text-align:center;"><div style="font-family:var(--titre);font-size:22px;font-weight:700;color:var(--texte-clair);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Code abonnement</div><div style="font-size:12px;color:var(--texte-dim);margin-bottom:24px;font-family:var(--mono);">Entrez le code reçu après votre abonnement Récit Games.</div><input id="code-input" type="text" placeholder="RG-XXXX-XXXX" style="width:100%;background:var(--bg3);border:none;border-bottom:2px solid var(--border2);color:var(--texte-clair);font-family:var(--mono);font-size:16px;padding:12px 0;text-align:center;letter-spacing:3px;text-transform:uppercase;outline:none;margin-bottom:8px;" oninput="this.value=this.value.toUpperCase()"/><div id="code-msg" style="font-size:12px;color:var(--rouge);min-height:18px;margin-bottom:16px;font-family:var(--mono);"></div><button id="code-btn" onclick="validerCode()" style="width:100%;background:var(--vert);color:#fff;border:none;padding:14px;font-family:var(--mono);font-size:11px;letter-spacing:2px;cursor:pointer;margin-bottom:10px;text-transform:uppercase;">Valider</button><button onclick="document.getElementById('code-overlay').remove()" style="background:none;border:none;color:var(--texte-dim);font-size:11px;cursor:pointer;text-decoration:underline;font-family:var(--mono);">Annuler</button></div>`;
+  document.body.appendChild(overlay);setTimeout(()=>document.getElementById('code-input')?.focus(),100);
+}
+
+async function validerCode(){
+  const code=(document.getElementById('code-input')?.value||'').trim().toUpperCase();
+  const msgEl=document.getElementById('code-msg');const btn=document.getElementById('code-btn');
+  if(!code||code.length<8){msgEl.textContent='Entrez votre code complet.';return;}
+  btn.disabled=true;btn.textContent='Vérification...';msgEl.textContent='';
+  try{
+    const res=await fetch('https://recitgames-api.vercel.app/api/verify-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});
+    const data=await res.json();
+    if(data.valid){G.nbChoix=0;if(data.admin)G.adminMode=true;else{document.getElementById('btn-envoyer').disabled=false;document.getElementById('input-joueur').disabled=false;}document.getElementById('code-overlay')?.remove();ajouterRecit(`<p style="color:var(--vert-vif);font-family:var(--mono);font-size:11px;letter-spacing:2px;">✓ ${data.admin?'Accès admin activé.':'Code validé. La survie continue.'}</p>`);}
+    else{msgEl.textContent='Code invalide.';btn.disabled=false;btn.textContent='Valider';}
+  }catch(err){msgEl.textContent='Erreur de connexion.';btn.disabled=false;btn.textContent='Valider';}
+}
+
+// ── STREAMING via proxy Vercel ──
 async function streamerMessage(msg){
   G.historique.push({role:'user',content:msg});
   const recit=document.getElementById('recit');
@@ -715,12 +537,12 @@ async function streamerMessage(msg){
   const cur=document.createElement('span');cur.className='curseur';sp.appendChild(cur);
   let full='';
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/api/chat',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':G.apiKey.replace(/[^\x20-\x7E]/g,'').trim(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1400,stream:true,system:construireSP(),messages:G.historique})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:construireSP(),messages:G.historique,max_tokens:1400})
     });
-    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`Erreur ${res.status}`);}
+    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||`Erreur ${res.status}`);}
     const reader=res.body.getReader();const dec=new TextDecoder('utf-8',{fatal:false});
     let buffer='';
     while(true){
@@ -743,35 +565,24 @@ async function streamerMessage(msg){
     entree.innerHTML=`<p style="color:var(--rouge);font-family:var(--mono);font-size:12px;">Erreur : ${err.message}</p>`;
   }
 }
-function ajouterRecit(html){
-  const recit=document.getElementById('recit');
-  const e=document.createElement('div');e.className='entree';e.innerHTML=html;
-  recit.appendChild(e);recit.scrollTop=recit.scrollHeight;
-}
+function ajouterRecit(html){const recit=document.getElementById('recit');const e=document.createElement('div');e.className='entree';e.innerHTML=html;recit.appendChild(e);recit.scrollTop=recit.scrollHeight;}
 async function envoyerMessage(msg){
   if(!msg.trim())return;
-  const btn=document.getElementById('btn-envoyer');
-  const inp=document.getElementById('input-joueur');
-  btn.disabled=true;
-  if(G.mode!=='boutons')inp.disabled=true;
+  const btn=document.getElementById('btn-envoyer');const inp=document.getElementById('input-joueur');
+  btn.disabled=true;if(G.mode!=='boutons')inp.disabled=true;
   const recit=document.getElementById('recit');
-  if(recit.children.length>0){
-    const sep=document.createElement('div');sep.className='entree';
-    sep.innerHTML='<hr class="sep"/>';recit.appendChild(sep);
-  }
+  if(recit.children.length>0){const sep=document.createElement('div');sep.className='entree';sep.innerHTML='<hr class="sep"/>';recit.appendChild(sep);}
   ajouterRecit(`<div class="action-joueur">▸ ${msg}</div>`);
-  inp.value='';
-  if(!G.adminMode)G.nbChoix++;
+  inp.value='';if(!G.adminMode)G.nbChoix++;
   await streamerMessage(msg);
-  btn.disabled=false;
-  if(G.mode!=='boutons')inp.disabled=false;
+  btn.disabled=false;if(G.mode!=='boutons')inp.disabled=false;
   if(window.innerWidth>700&&G.mode!=='boutons')inp.focus();
 }
 function envoyerChoix(i){const t=window._choix&&window._choix[i];if(t)envoyerMessage(t);}
 async function envoyerPremier(){
   miseAJourUI();
   const biomeMsg=G.biome==='aleatoire'?'biome aleatoire':'biome : '+G.biome;
-  const msg=`Je commence Survivants. ${biomeMsg}. Genere le scenario complet : lieu exact, nombre de survivants avec leurs profils, saison, materiel recupere, blessures initiales. Commence le Jour 1.`;
+  const msg=`Je commence Survivants. ${biomeMsg}. Génère le scénario complet : lieu exact, nombre de survivants avec leurs profils, saison, matériel récupéré, blessures initiales. Commence le Jour 1.`;
   await streamerMessage(msg);
 }
 
